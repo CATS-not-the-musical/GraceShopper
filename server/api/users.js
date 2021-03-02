@@ -1,6 +1,4 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
-module.exports = router
 
 // Do we need an all users request?? Is this specifically for Admin use only??
 
@@ -32,7 +30,6 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-
 // Update User
 router.put('/:id', async (req, res, next) => {
   try {
@@ -58,3 +55,5 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router

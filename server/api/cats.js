@@ -1,6 +1,6 @@
+
 const router = require('express').Router()
 const {Cats} = require('../db/models')
-module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
@@ -48,3 +48,6 @@ router.put('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router
+
