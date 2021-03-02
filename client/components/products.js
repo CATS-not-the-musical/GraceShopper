@@ -12,7 +12,7 @@ class AllProducts extends React.Component {
     return (
       <div>
         <h1>Products</h1>
-        {Products.map((products) => {
+        {Products.map((product) => {
           return (
             <div key={product.id}>
               <h2>
