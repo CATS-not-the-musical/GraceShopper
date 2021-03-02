@@ -1,2 +1,4 @@
 GraceShopper Readme
-Hello world
+Pushing Products Redux
+
+
