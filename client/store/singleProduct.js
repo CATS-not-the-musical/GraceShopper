@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const SINGLE_PRDOUCT = 'SINGLE_PRODUCT'
+const SINGLE_PRODUCT = 'SINGLE_PRODUCT'
 
 const initalState = {}
 
