@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const {Product} = require('../db/models')
 
 // All Products
 router.get('/', async (req, res, next) => {
@@ -9,6 +10,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
 // Single Product
 router.get('/:id', async (req, res, next) => {
   try {
@@ -18,6 +20,7 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
 // Create Product
 router.post('/', async (req, res, next) => {
   try {
@@ -27,20 +30,23 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+
 // Update Product
 router.get('/:id', async (req, res, next) => {
   try {
     const updatedProduct = await Product.update(req.body, {
       where: {
-        id: req.params.id
+
+        id: req.params.id,
       },
-      returning: true
+      returning: true,
     })
     res.send(updatedProduct)
   } catch (err) {
     next(err)
   }
 })
+
 // Delete Product
 router.delete('/:id', async (req, res, next) => {
   try {
@@ -53,3 +59,4 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 module.exports = router
+

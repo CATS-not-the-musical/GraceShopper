@@ -1,14 +1,10 @@
 const router = require('express').Router()
 
+// Do we need an all users request?? Is this specifically for Admin use only??
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email']
-    })
+    const users = await User.findAll()
     res.json(users)
   } catch (err) {
     next(err)
@@ -24,6 +20,7 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
 // Create User
 router.post('/', async (req, res, next) => {
   try {
@@ -38,15 +35,16 @@ router.put('/:id', async (req, res, next) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
-      returning: true
+      returning: true,
     })
     res.send(updatedUser)
   } catch (err) {
     next(err)
   }
 })
+
 // Remove User
 router.delete('/:id', async (req, res, next) => {
   try {

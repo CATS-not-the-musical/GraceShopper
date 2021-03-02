@@ -1,6 +1,6 @@
 
 const router = require('express').Router()
-
+const {Cats} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -39,9 +39,9 @@ router.put('/:id', async (req, res, next) => {
   try {
     const updatedCat = await Cats.update(req.body, {
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
-      returning: true
+      returning: true,
     })
     res.send(updatedCat)
   } catch (err) {
@@ -50,3 +50,4 @@ router.put('/:id', async (req, res, next) => {
 })
 
 module.exports = router
+
