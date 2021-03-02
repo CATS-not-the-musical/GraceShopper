@@ -5,14 +5,14 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 const initialState = []
 
-export const allProducts = (data) => ({
+export const allProducts = data => ({
   type: ALL_PRODUCTS,
-  data,
+  data
 })
 
-export const removeProduct = (product) => ({
+export const removeProduct = product => ({
   type: REMOVE_PRODUCT,
-  product,
+  product
 })
 
 export default function productReducer(state = initialState, action) {
@@ -20,7 +20,7 @@ export default function productReducer(state = initialState, action) {
     case ALL_PRODUCTS:
       return action.data
     case REMOVE_PRODUCT:
-      const filteredProducts = [...state].filter((product) => {
+      const filteredProducts = [...state].filter(product => {
         return product.id !== action.product
       })
       return filteredProducts
@@ -30,7 +30,7 @@ export default function productReducer(state = initialState, action) {
 }
 
 export const fetchAllProducts = () => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const {data} = await axios.get('/api/products')
       dispatch(allProducts(data))
@@ -41,14 +41,14 @@ export const fetchAllProducts = () => {
 }
 
 export const deleteProduct = (id, history) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const deleted = axios.delete(`/api/products/${id}`).data
       dispatch(removeProduct(id))
       history.push('/')
       history.goForward()
     } catch (err) {
-      next(err)
+      console.log(err)
     }
   }
 }

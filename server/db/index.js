@@ -1,19 +1,14 @@
 const db = require('./db')
+const Product = require('./models/product')
+const User = require('./models/user')
 
-// register models
-require('./models')
+// This is a great place to establish associations between your models
+// (https://sequelize-guides.netlify.com/association-types/).
+// Example:
 
-module.exports = router
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = db
+module.exports = {
+  // Include your models in this exports object as well!
+  db,
+  Product,
+  User
+}
