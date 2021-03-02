@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
-module.exports = router
 
 // All Products
 router.get('/', async (req, res, next) => {
@@ -37,6 +36,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const updatedProduct = await Product.update(req.body, {
       where: {
+
         id: req.params.id,
       },
       returning: true,
@@ -57,3 +57,6 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router
+
