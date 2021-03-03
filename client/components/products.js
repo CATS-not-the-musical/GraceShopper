@@ -1,24 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
 import {fetchAllProducts} from '../store/product'
 
 class AllProducts extends React.Component {
   componentDidMount() {
-    console.log('allproducts did mount')
     this.props.allProducts()
   }
   render() {
-    console.log('render----allproducts')
     if (!this.props.products) {
       return <h1>Loading...</h1>
     } else {
       const Products = this.props.products
-      console.log('Render All Products')
       return (
         <div>
           <h1>Products</h1>
-          {Products.map(product => {
+          {Products.map((product) => {
             return (
               <div key={product.id}>
                 <h2>
@@ -39,15 +35,15 @@ class AllProducts extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
-    products: state.products
+    products: state.products,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    allProducts: () => dispatch(fetchAllProducts())
+    allProducts: () => dispatch(fetchAllProducts()),
   }
 }
 
