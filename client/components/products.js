@@ -5,9 +5,11 @@ import {fetchAllProducts} from '../store/product'
 
 class AllProducts extends React.Component {
   componentDidMount() {
+    console.log('allproducts did mount')
     this.props.allProducts()
   }
   render() {
+    console.log('render----allproducts')
     if (!this.props.products) {
       return <h1>Loading...</h1>
     } else {
@@ -27,7 +29,7 @@ class AllProducts extends React.Component {
                 <h3>Category: {product.category}</h3>
                 <h4>Description: {product.description}</h4>
                 <h4>Price: {product.price}</h4>
-                {/* <h4>Image: {product.image}</h4> */}
+                <img src={`${product.image}`} />
               </div>
             )
           })}
