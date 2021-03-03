@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const User = require('../db/models/user')
 
 // Do we need an all users request?? Is this specifically for Admin use only??
 
@@ -35,9 +36,9 @@ router.put('/:id', async (req, res, next) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      returning: true,
+      returning: true
     })
     res.send(updatedUser)
   } catch (err) {
