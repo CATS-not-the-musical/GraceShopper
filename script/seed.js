@@ -2,7 +2,7 @@
 
 const {db} = require('../server/db')
 const {User} = require('../server/db/models')
-const {Product} = require('../server/db/models')
+const {Cats} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -20,10 +20,10 @@ async function seed() {
     ])
   }
   //for loop to create products
-  const productsToCreate = 100
-  for (let i = 0; i < productsToCreate; i++) {
+  const catsToCreate = 100
+  for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
-      Product.create({
+      Cats.create({
         name: `Paulo${i}`,
         category: 'cats',
         description:
