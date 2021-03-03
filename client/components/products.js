@@ -10,6 +10,7 @@ class AllProducts extends React.Component {
   }
   render() {
     console.log('render----allproducts')
+    //suggest looking into loading state-change loading to true in component will unmount
     if (!this.props.products) {
       return <h1>Loading...</h1>
     } else {
@@ -41,7 +42,8 @@ class AllProducts extends React.Component {
 
 const mapState = state => {
   return {
-    products: state.products
+    products: state.products,
+    loading: state.loading
   }
 }
 

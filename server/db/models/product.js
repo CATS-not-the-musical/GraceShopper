@@ -13,6 +13,8 @@ const Product = db.define('product', {
     defaultValue: 'other'
   },
   price: {
+    //wrong to do it as Decimal. Do it as integer and work in pennies.
+    //sequelize hooks for convert inte to pennies
     type: Sequelize.DataTypes.DECIMAL(10, 2),
     allowNull: false
   },
