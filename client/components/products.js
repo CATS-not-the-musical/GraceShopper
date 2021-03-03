@@ -18,8 +18,8 @@ class AllProducts extends React.Component {
       console.log('Render All Products')
       return (
         <div>
-          <h1>Products</h1>
-          {Products.map(product => {
+          <h1>Products-Travis Integrated</h1>
+          {Products.map((product) => {
             return (
               <div key={product.id}>
                 <h2>
@@ -40,16 +40,16 @@ class AllProducts extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     products: state.products,
-    loading: state.loading
+    loading: state.loading,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    allProducts: () => dispatch(fetchAllProducts())
+    allProducts: () => dispatch(fetchAllProducts()),
   }
 }
 
