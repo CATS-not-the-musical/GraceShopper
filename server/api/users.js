@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const User = require('../db/models/user')
 
 // Do we need an all users request?? Is this specifically for Admin use only??
 
@@ -14,6 +15,7 @@ router.get('/', async (req, res, next) => {
 // Single User
 router.get('/:id', async (req, res, next) => {
   try {
+    //check to see if id is an actual number
     const singleUser = await User.findByPk(req.params.id)
     res.send(singleUser)
   } catch (err) {
@@ -24,6 +26,7 @@ router.get('/:id', async (req, res, next) => {
 // Create User
 router.post('/', async (req, res, next) => {
   try {
+    //destructure req.body before sending into create only send in necessary info
     const newUser = await User.create(req.body)
     res.json(newUser)
   } catch (err) {
@@ -35,9 +38,9 @@ router.put('/:id', async (req, res, next) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      returning: true,
+      returning: true
     })
     res.send(updatedUser)
   } catch (err) {
