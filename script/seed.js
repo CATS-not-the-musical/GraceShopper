@@ -24,11 +24,10 @@ async function seed() {
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
       Cat.create({
-        name: `Paulo${i}`,
-        category: 'cats',
-        description:
-          'cat placeholder picture. this product should not be a cat.',
-        price: 15.5,
+        firstName: `Paulo${i}`,
+        lastName: `Smith${catsToCreate - i}`,
+        adoptionStatus: 'available',
+        adoptionFee: 15.5,
         image: `/images/S${Math.floor(Math.random() * 39)}.jpg`
       })
     ])
