@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 14
+- 14
 services:
-  - postgresql
+- postgresql
 addons:
   postgresql: '10'
 dist: xenial
@@ -11,12 +11,12 @@ notifications:
     on_success: change
     on_failure: always
 install:
-  - npm ci
+- npm ci
 before_script:
-  - psql -c 'create database "GraceShopper-test";' -U postgres
+- psql -c 'create database "GraceShopper-test";' -U postgres
 script:
-  - npm test
-  - npm run build-client
+- npm test
+- npm run build-client
 deploy:
   api_key:
-    secure: HxmOklP8+UeaW+qe/hlg5YSBqIIOARw9ykoetSDGxkqD7Ri/m7AOr0ROJSi+U94/gTGXKBUtoZ09f8T+Ae9RBbZaoo0yt9Fgms8TaSaDHsmhC0VO/CPO49pKkwrRqC7WKG/5c7rLlHjyQFDp5FR78JsoztgNVBv6QWdwUmca/sxjNXKMV/wJxI0fq8fRtG36gu+FIWirUxcStJ3+CRhgyNlXVdXlxV9A1OleKCxBaLS+AHcquBZa9FhgxoZgyz3v/uwVU1FzEmBM+slB1QMYkauJB+9g0F2Yfq7m5cVwQptyAV4Lsgs3VhSpxxqZCKTTFastNGttHAh3xKvN+eKMReoohhQUfDueg3RGtyIgcuuxjKY52/q6GrPExLLw5xgwm3CAnnYXGlfrWQ70R3VHD/a9AtLxROReYMyue9ORuRRkcfn7EYGiU9/MGT4BXB6Cp8MpwnFE48yPzWJKWmmlyiveA2RfqOiJ83xGP+Hr/jiCUY/Obp/NVAYSQlIqOt2em7V3I3dEWnIsfL+wSF3XeYLmUn/cRcZUW7OT/ZPaFBmsVLs6tdeQIpjMYrhdfSuEVu68zMrxM/5y/Ue/zURePCT5vnJc3SzoclKfQcdJEES4Mq39FulStodDwBHNw8DKI+M7LfDgDWxkfBF2ggIrFxmO+CbPMevO4SZx82OPOts=
+    secure: GNZvEG+9XlYcX6xuxxdMhM2mSN5I3rCqUtN0WBwAgMcZ/e09zqsZWrFAWxlv//6ESiVAVB5saqPWHCvj5CgMcVvk1JQ3iDUmFWBzZW6Z7vZNwppamz1x0Q/HGLaR67eiQ5cRtPaHzwRdXIqX75ZKNedzTm8B9D/x5MQZhDu7TP+fsx9lWNJfu2gUJFyInf/zOLzhSH0JS91EU4GICtkEZqYcg/1VeCr3f0rSY+6DUR9wi8wEPsLCO/U4ars7HgFMCRm4+jnXgeOeYv41pxpqCdSodfNP58ss8ZFQwln1aITx4p6LCe8vkjZq4NwvrLIxdmnhHXmeT42rzH7r9RTuK6kEVpIDFN2KvN9PJac4oPt7p42wOrTJeRSZqp3CtgaNwaq/NMN17rG7oEfK/lTYu073/ETWdjk+1lg8lMEvg0pKxxqfr48z91DPaeRYW3itYCzHTG+MqlLW+S1h2npqJ++/+dG8IYFw5WRWG+ob5d8pJP0At18dNPpUBLROhRSQkGKP/+kmLzGjfG1ZfcgjURX+XgYsyKgTIwuCHy2j62Je5QRRSAO7oBOstfgMgIcX2K0g3SQchsi9lrtrMFcLXN8k++N3pIAkqs39NTQ1+41+rjXKEfsqcFKOej13j7NjBJ1fwJYNwitbNS7VBX4mVwRb5EpMsa69n5GWG7L49vI=
