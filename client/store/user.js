@@ -58,9 +58,9 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const allUsers = () => async dispatch => {
+export const fetchAllUsers = () => async dispatch => {
   try {
-    const {data} = await axios.get('/users')
+    const {data} = await axios.get('/api/users')
     dispatch(getAllUsers(data))
   } catch (error) {
     console.log(error)
@@ -77,7 +77,7 @@ export default function(state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case GET_ALL_USERS:
-      return action.allUsers
+      return {...state, allUsers: action.allUsers}
     default:
       return state
   }
