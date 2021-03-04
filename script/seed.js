@@ -2,7 +2,7 @@
 
 const {db} = require('../server/db')
 const {User} = require('../server/db/models')
-const {Cats} = require('../server/db/models')
+const {Cat} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
