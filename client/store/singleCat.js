@@ -41,7 +41,8 @@ export const fetchSingleCat = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/cats/${id}`)
-      dispatch(fetchSingleCat(data))
+      console.log('this is the data', data)
+      dispatch(singleCat(data))
     } catch (err) {
       console.log(err)
     }

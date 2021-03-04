@@ -347,11 +347,13 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSingleCat(this.props.match.params.id);
+      console.log('componentDidMount', this.props);
     }
   }, {
     key: "render",
     value: function render() {
       var cat = this.props.singleCat;
+      console.log('singleCat render', this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, cat.firstName, " ", cat.lastName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, cat.breed), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "".concat(cat.image)
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Age: ", cat.age), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Adoption Status: ", cat.adoptionStatus), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Adoption Fee: ", cat.adoptionFee), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Description: ", cat.description));
@@ -1288,21 +1290,22 @@ var fetchSingleCat = function fetchSingleCat(id) {
               case 3:
                 _ref2 = _context.sent;
                 data = _ref2.data;
-                dispatch(fetchSingleCat(data));
-                _context.next = 11;
+                console.log('this is the data', data);
+                dispatch(singleCat(data));
+                _context.next = 12;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 9]]);
       }));
 
       return function (_x) {
