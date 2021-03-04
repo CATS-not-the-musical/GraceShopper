@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Navbar from './navbar'
+import getAllUsers from '../store/user'
 
 class Admin extends React.Component {
   componentDidMount() {
@@ -10,6 +11,7 @@ class Admin extends React.Component {
 
   render() {
     const users = this.props.allUsers
+    console.log(users)
     return (
       <div>
         <Navbar />
