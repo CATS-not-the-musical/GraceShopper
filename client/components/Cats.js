@@ -13,7 +13,7 @@ class AllCats extends React.Component {
       const Cats = this.props.cats
       return (
         <div>
-          <h1>Cats</h1>
+          <h1>Cats-Travis Integrated</h1>
           {Cats.map(cat => {
             return (
               <div key={cat.id}>
