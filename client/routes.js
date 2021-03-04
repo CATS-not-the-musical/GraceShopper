@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import Admin from './components/admin'
 import {me} from './store'
 import AllCats from './components/Cats'
+import SingleCat from './components/SingleCat'
+import RemoveCat from './components/RemoveCat'
 /**
  * COMPONENT
  */
@@ -22,7 +24,9 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/cats" component={AllCats} />
+        <Route exact path="/cats" component={AllCats} />
+        <Route exact path="/cats/:id/remove" component={RemoveCat} />
+        <Route path="/cats/:id" component={SingleCat} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

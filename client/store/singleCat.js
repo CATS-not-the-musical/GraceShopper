@@ -4,11 +4,15 @@ const SINGLE_CAT = 'SINGLE_CAT'
 const UPDATE_CAT = 'UPDATE_CAT'
 
 const initialState = {
-  name: '',
-  category: '',
+  breed: '',
+  firstName: '',
+  lastName: '',
+  age: '',
+  adoptionStatus: '',
+  adoptionFee: '',
   description: '',
-  price: '',
-  image: ''
+  image: '',
+  ownerId: ''
 }
 
 export const singleCat = data => ({
