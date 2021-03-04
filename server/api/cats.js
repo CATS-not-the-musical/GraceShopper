@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {Cats} = require('../db/models')
+const {Cat} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    const allCats = await Cats.findAll()
+    const allCats = await Cat.findAll()
     res.json(allCats)
   } catch (err) {
     next(err)
@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
 })
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleCat = await Cats.findByPk(req.params.id)
+    const singleCat = await Cat.findByPk(req.params.id)
     res.json(singleCat)
   } catch (err) {
     next(err)
@@ -19,7 +19,7 @@ router.get('/:id', async (req, res, next) => {
 })
 router.post('/', async (req, res, next) => {
   try {
-    const newCat = await Cats.create(req.body)
+    const newCat = await Cat.create(req.body)
     res.json(newCat)
   } catch (err) {
     next(err)
@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
 })
 router.delete('/:id', async (req, res, next) => {
   try {
-    const removeCat = await Cats.findByPk(req.params.id)
+    const removeCat = await Cat.findByPk(req.params.id)
     await removeCat.destroy()
     res.sendStatus(204)
   } catch (err) {
@@ -36,7 +36,7 @@ router.delete('/:id', async (req, res, next) => {
 })
 router.put('/:id', async (req, res, next) => {
   try {
-    const updatedCat = await Cats.update(req.body, {
+    const updatedCat = await Cat.update(req.body, {
       where: {
         id: req.params.id
       },
