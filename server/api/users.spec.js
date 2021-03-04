@@ -33,7 +33,7 @@ describe('User routes', () => {
     })
     it('Get /api/cats', async () => {
       const res = await request(app)
-        .get('api/catss')
+        .get('api/cats')
         .expect(200)
       expect(res.body).to.be.an('array')
     })
