@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-
-const Product = db.define('product', {
+//saving this for now but this looks like something for cat products.
+//
+const Catsold = db.define('cat', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -13,6 +14,8 @@ const Product = db.define('product', {
     defaultValue: 'other'
   },
   price: {
+    //wrong to do it as Decimal. Do it as integer and work in pennies.
+    //sequelize hooks for convert inte to pennies
     type: Sequelize.DataTypes.DECIMAL(10, 2),
     allowNull: false
   },
@@ -25,4 +28,4 @@ const Product = db.define('product', {
   }
 })
 
-module.exports = Product
+//module.exports = Cats

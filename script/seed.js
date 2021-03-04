@@ -1,8 +1,8 @@
 'use strict'
 
-const db = require('../server/db')
+const {db} = require('../server/db')
 const {User} = require('../server/db/models')
-const {Product} = require('../server/db/models')
+const {Cat} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -20,15 +20,15 @@ async function seed() {
     ])
   }
   //for loop to create products
-  const productsToCreate = 100
-  for (let i = 0; i < productsToCreate; i++) {
+  const catsToCreate = 100
+  for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
-      Product.create({
-        name: `Paulo${i}`,
-        category: 'cats',
-        description:
-          'cat placeholder picture. this product should not be a cat.',
-        price: 15.5,
+      Cat.create({
+        firstName: `Paulo${i}`,
+        lastName: `Smith${catsToCreate - i}`,
+        adoptionStatus: 'available',
+        adoptionFee: Math.floor(Math.random() * 10) + 30,
+        age: Math.floor(Math.random() * 10),
         image: `/images/S${Math.floor(Math.random() * 39)}.jpg`
       })
     ])

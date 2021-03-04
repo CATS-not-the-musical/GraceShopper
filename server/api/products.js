@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const Cats = require('../db/models/cats')
 
-// All Products
+// All Cats
 router.get('/', async (req, res, next) => {
   try {
-    const allProducts = await Product.findAll()
-    res.json(allProducts)
+    const allCats = await Cats.findAll()
+    res.json(allCats)
   } catch (err) {
     next(err)
   }
@@ -14,8 +14,8 @@ router.get('/', async (req, res, next) => {
 // Single Product
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleProduct = await Product.findByPk(req.params.id)
-    res.send(singleProduct)
+    const singleCat = await Cats.findByPk(req.params.id)
+    res.send(singleCat)
   } catch (err) {
     next(err)
   }
@@ -24,8 +24,8 @@ router.get('/:id', async (req, res, next) => {
 // Create Product
 router.post('/', async (req, res, next) => {
   try {
-    const newProduct = await Product.create(req.body)
-    res.json(newProduct)
+    const newCat = await Cats.create(req.body)
+    res.json(newCat)
   } catch (err) {
     next(err)
   }
@@ -34,14 +34,13 @@ router.post('/', async (req, res, next) => {
 // Update Product
 router.get('/:id', async (req, res, next) => {
   try {
-    const updatedProduct = await Product.update(req.body, {
+    const updatedCat = await Cats.update(req.body, {
       where: {
-
-        id: req.params.id,
+        id: req.params.id
       },
-      returning: true,
+      returning: true
     })
-    res.send(updatedProduct)
+    res.send(updatedCat)
   } catch (err) {
     next(err)
   }
@@ -50,13 +49,12 @@ router.get('/:id', async (req, res, next) => {
 // Delete Product
 router.delete('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.id)
-    await product.destroy()
-    res.send(product)
+    const cat = await Cats.findByPk(req.params.id)
+    await cat.destroy()
+    res.send(cat)
   } catch (err) {
     next(err)
   }
 })
 
 module.exports = router
-

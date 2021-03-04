@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
-
+const {resolve} = require('path')
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
@@ -22,7 +22,12 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
+        include: resolve(__dirname, './client'),
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   }
