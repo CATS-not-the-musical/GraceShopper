@@ -13,12 +13,13 @@ describe('User routes', () => {
 
   describe('/api/users/', () => {
     const codysEmail = 'cody@puppybook.com'
-
+    //have to add admin role to test api routes
     beforeEach(() => {
       return User.create({
         email: codysEmail,
         firstName: 'somename',
-        lastName: 'smith'
+        lastName: 'smith',
+        role: 'admin'
       })
     })
 
@@ -29,6 +30,12 @@ describe('User routes', () => {
 
       expect(res.body).to.be.an('array')
       expect(res.body[0].email).to.be.equal(codysEmail)
+    })
+    it('Get /api/cats', async () => {
+      const res = await request(app)
+        .get('api/catss')
+        .expect(200)
+      expect(res.body).to.be.an('array')
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
