@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
 // Single User
 router.get('/:id', async (req, res, next) => {
   try {
+    //check to see if id is an actual number
     const singleUser = await User.findByPk(req.params.id)
     res.send(singleUser)
   } catch (err) {
@@ -25,6 +26,7 @@ router.get('/:id', async (req, res, next) => {
 // Create User
 router.post('/', async (req, res, next) => {
   try {
+    //destructure req.body before sending into create only send in necessary info
     const newUser = await User.create(req.body)
     res.json(newUser)
   } catch (err) {

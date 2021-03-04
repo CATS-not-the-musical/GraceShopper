@@ -1,4 +1,5 @@
 const db = require('./db')
+
 const Cat = require('./models/cats')
 const User = require('./models/user')
 
@@ -12,3 +13,4 @@ module.exports = {
   Cat,
   User
 }
+
