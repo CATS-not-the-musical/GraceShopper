@@ -1,8 +1,11 @@
 'use strict'
 
 const {db} = require('../server/db')
-const {User} = require('../server/db/models')
-const {Cat} = require('../server/db/models')
+const {User} = require('../server/db')
+const {Cat} = require('../server/db')
+const ProductOrder = require('../server/db/models/productOrder')
+const Order = require('../server/db/models/order')
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -15,11 +18,12 @@ async function seed() {
         lastName: 'Daniel',
         email: `cody${i}@email.com`,
         password: '123',
-        image: `/images/${Math.floor(Math.random() * 65)}.jpg`
+        image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
+        role: `${Math.floor(Math.random() * 2) === 1 ? 'admin' : 'user'}`
       })
     ])
   }
-  //for loop to create products
+  //for loop to create cats
   const catsToCreate = 100
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
@@ -30,6 +34,24 @@ async function seed() {
         adoptionFee: Math.floor(Math.random() * 10) + 30,
         age: Math.floor(Math.random() * 10),
         image: `/images/S${Math.floor(Math.random() * 39)}.jpg`
+      })
+    ])
+  }
+  const orderToCreate = 1
+  for (let i = 0; i < orderToCreate; i++) {
+    await Promise.all([
+      Order.create({
+        userId: 1
+      })
+    ])
+  }
+
+  const ProductToCreate = 1
+  for (let i = 0; i < ProductToCreate; i++) {
+    await Promise.all([
+      ProductOrder.create({
+        catId: 1,
+        OrderId: 1
       })
     ])
   }

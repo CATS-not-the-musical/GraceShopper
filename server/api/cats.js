@@ -1,7 +1,9 @@
 const router = require('express').Router()
-const {Cat} = require('../db/models')
+const {Cat} = require('../db')
+const isAdmin = require('./gatekeeper')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
+  console.log('cat route')
   try {
     const allCats = await Cat.findAll()
     res.json(allCats)
@@ -9,7 +11,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAdmin, async (req, res, next) => {
   try {
     const singleCat = await Cat.findByPk(req.params.id)
     res.json(singleCat)
@@ -17,7 +19,7 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const newCat = await Cat.create(req.body)
     res.json(newCat)
@@ -25,7 +27,7 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
     const removeCat = await Cat.findByPk(req.params.id)
     await removeCat.destroy()
@@ -34,7 +36,7 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     const updatedCat = await Cat.update(req.body, {
       where: {
