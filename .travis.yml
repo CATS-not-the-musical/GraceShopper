@@ -18,5 +18,6 @@ script:
   - npm test
   - npm run build-client
 deploy:
+  provider: heroku
   api_key:
     secure: HxmOklP8+UeaW+qe/hlg5YSBqIIOARw9ykoetSDGxkqD7Ri/m7AOr0ROJSi+U94/gTGXKBUtoZ09f8T+Ae9RBbZaoo0yt9Fgms8TaSaDHsmhC0VO/CPO49pKkwrRqC7WKG/5c7rLlHjyQFDp5FR78JsoztgNVBv6QWdwUmca/sxjNXKMV/wJxI0fq8fRtG36gu+FIWirUxcStJ3+CRhgyNlXVdXlxV9A1OleKCxBaLS+AHcquBZa9FhgxoZgyz3v/uwVU1FzEmBM+slB1QMYkauJB+9g0F2Yfq7m5cVwQptyAV4Lsgs3VhSpxxqZCKTTFastNGttHAh3xKvN+eKMReoohhQUfDueg3RGtyIgcuuxjKY52/q6GrPExLLw5xgwm3CAnnYXGlfrWQ70R3VHD/a9AtLxROReYMyue9ORuRRkcfn7EYGiU9/MGT4BXB6Cp8MpwnFE48yPzWJKWmmlyiveA2RfqOiJ83xGP+Hr/jiCUY/Obp/NVAYSQlIqOt2em7V3I3dEWnIsfL+wSF3XeYLmUn/cRcZUW7OT/ZPaFBmsVLs6tdeQIpjMYrhdfSuEVu68zMrxM/5y/Ue/zURePCT5vnJc3SzoclKfQcdJEES4Mq39FulStodDwBHNw8DKI+M7LfDgDWxkfBF2ggIrFxmO+CbPMevO4SZx82OPOts=
