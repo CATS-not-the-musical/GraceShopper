@@ -1,7 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
 import {fetchAllCats} from '../store/cat'
 
 class AllCats extends React.Component {
@@ -14,7 +13,7 @@ class AllCats extends React.Component {
     return (
       <div>
         <h1>Cats-Travis Integrated</h1>
-        {Cats.map(cat => {
+        {Cats.map((cat) => {
           return (
             <div key={cat.id}>
               <h2>
@@ -36,15 +35,15 @@ class AllCats extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
-    cats: state.cats
+    cats: state.cats,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    allCats: () => dispatch(fetchAllCats())
+    allCats: () => dispatch(fetchAllCats()),
   }
 }
 

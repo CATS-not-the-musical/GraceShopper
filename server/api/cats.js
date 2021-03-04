@@ -40,9 +40,9 @@ router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     const updatedCat = await Cat.update(req.body, {
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      returning: true,
+      returning: true
     })
     res.send(updatedCat)
   } catch (err) {
