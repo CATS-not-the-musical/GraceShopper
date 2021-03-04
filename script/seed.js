@@ -27,7 +27,8 @@ async function seed() {
         firstName: `Paulo${i}`,
         lastName: `Smith${catsToCreate - i}`,
         adoptionStatus: 'available',
-        adoptionFee: 15.5,
+        adoptionFee: Math.floor(Math.random() * 10) + 30,
+        age: Math.floor(Math.random() * 10) + 0.1,
         image: `/images/S${Math.floor(Math.random() * 39)}.jpg`
       })
     ])
