@@ -1,24 +1,25 @@
-
 const router = require('express').Router()
-const {Cats} = require('../db/models')
+const {Cat} = require('../db')
+const isAdmin = require('./gatekeeper')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
+  console.log('cat route')
   try {
-    const allCats = await Cats.findAll()
-    res.json(cats)
+    const allCats = await Cat.findAll()
+    res.json(allCats)
   } catch (err) {
     next(err)
   }
 })
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAdmin, async (req, res, next) => {
   try {
-    const singleCat = await Cats.findByPk(req.params.id)
-    res.json(cat)
+    const singleCat = await Cat.findByPk(req.params.id)
+    res.json(singleCat)
   } catch (err) {
     next(err)
   }
 })
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const newCat = await Cat.create(req.body)
     res.json(newCat)
@@ -26,22 +27,22 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
-    const removeCat = await Cats.findByPk(req.params.id)
+    const removeCat = await Cat.findByPk(req.params.id)
     await removeCat.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
   }
 })
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
-    const updatedCat = await Cats.update(req.body, {
+    const updatedCat = await Cat.update(req.body, {
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      returning: true,
+      returning: true
     })
     res.send(updatedCat)
   } catch (err) {
@@ -50,4 +51,3 @@ router.put('/:id', async (req, res, next) => {
 })
 
 module.exports = router
-

@@ -18,5 +18,14 @@ script:
 - npm test
 - npm run build-client
 deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: cats-not-the-musical
+  on:
+    branch: master
   api_key:
+<<<<<<< HEAD
     secure: GNZvEG+9XlYcX6xuxxdMhM2mSN5I3rCqUtN0WBwAgMcZ/e09zqsZWrFAWxlv//6ESiVAVB5saqPWHCvj5CgMcVvk1JQ3iDUmFWBzZW6Z7vZNwppamz1x0Q/HGLaR67eiQ5cRtPaHzwRdXIqX75ZKNedzTm8B9D/x5MQZhDu7TP+fsx9lWNJfu2gUJFyInf/zOLzhSH0JS91EU4GICtkEZqYcg/1VeCr3f0rSY+6DUR9wi8wEPsLCO/U4ars7HgFMCRm4+jnXgeOeYv41pxpqCdSodfNP58ss8ZFQwln1aITx4p6LCe8vkjZq4NwvrLIxdmnhHXmeT42rzH7r9RTuK6kEVpIDFN2KvN9PJac4oPt7p42wOrTJeRSZqp3CtgaNwaq/NMN17rG7oEfK/lTYu073/ETWdjk+1lg8lMEvg0pKxxqfr48z91DPaeRYW3itYCzHTG+MqlLW+S1h2npqJ++/+dG8IYFw5WRWG+ob5d8pJP0At18dNPpUBLROhRSQkGKP/+kmLzGjfG1ZfcgjURX+XgYsyKgTIwuCHy2j62Je5QRRSAO7oBOstfgMgIcX2K0g3SQchsi9lrtrMFcLXN8k++N3pIAkqs39NTQ1+41+rjXKEfsqcFKOej13j7NjBJ1fwJYNwitbNS7VBX4mVwRb5EpMsa69n5GWG7L49vI=
+=======
+    secure: vMA7F306gj3alOc/HPKlOkfYXaut2x9YH4lME7QrllPUffu++31OT1ufZskAty6GovxACxE7gCcvBDiAsOfZw/ydu7dUcsn+q3dzpbyGa7erGJTQUad8wEW6OUboO+rLf2B7ScrDzgBMRbmcUTWC+0W2QorSKwS8OL2n5xcBYSxjgr1ZXiVBLqqKkYNySMxurwfW1z34plo4khoVtGaLVCBXbiCGYOhOssQ02wUMW6IXafYz46+TzJC7Uu4jdE/omM72dUyxLehJvSlYHDKNB1CCpcPooZK0OFbzyIFr2Oo4N0ZnGHhmExGWzoZN7kprgAf2i0xbMyFX8aBp192iuo1pvC10tuDQr3sOh58olnZAu9Yh0gOY+i1NT+U8lwHYnbLGVYKMp+MKBApj4Tyvaj3ALKX5w52PJdMmdKyw6OXZfCUPFxF5/YeEDev2avEODOA4aRlzlyM+nS0EeZN5dbN9Lbnrk2eiE453Ol/jyJpgJssX+dnDIiOyF8hdlGWLBkOO7/AY/SttgesatXKCkF4leMqviGLjocb68JWcQ6SKXH3P+kVlRRs7g0cQOiDa1L1B70XRNCDdauktPcnzt5Bxib31jurXfWiXKgoF6fleU6x0ix++XjuQPl8O1MEnffUqJZRxwoSJVc6vg/jNo9UkTB+++qysqhrZbFlw7p0=
+>>>>>>> master

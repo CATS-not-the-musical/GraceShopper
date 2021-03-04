@@ -18,7 +18,7 @@ describe('User model', () => {
           email: 'cody@puppybook.com',
           password: 'bones',
           firstName: 'somename',
-          lastName: 'smith',
+          lastName: 'smith'
         })
       })
 
