@@ -23,7 +23,7 @@ async function seed() {
   const catsToCreate = 100
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
-      Cats.create({
+      Cat.create({
         name: `Paulo${i}`,
         category: 'cats',
         description:

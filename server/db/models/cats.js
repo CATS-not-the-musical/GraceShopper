@@ -1,30 +1,39 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Cats = db.define('cat', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
+const Cat = db.define('cat', {
+  breed: {
+    type: Sequelize.STRING
   },
-  category: {
+  firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: 'other'
+    allowNull: false
   },
-  price: {
-    //wrong to do it as Decimal. Do it as integer and work in pennies.
-    //sequelize hooks for convert inte to pennies
-    type: Sequelize.DataTypes.DECIMAL(10, 2),
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  age: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  adoptionStatus: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  adoptionFee: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT,
-    allowNull: false
+    type: Sequelize.STRING
   },
   image: {
     type: Sequelize.STRING
+  },
+  ownerId: {
+    type: Sequelize.INTEGER
   }
 })
 
-module.exports = Cats
+module.exports = Cat

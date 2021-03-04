@@ -1,6 +1,6 @@
 const User = require('./user')
 
-const Cat = require('./cat')
+const Cat = require('./cats')
 const ProductOrder = require('./productOrder')
 
 /**
