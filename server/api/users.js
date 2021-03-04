@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
-
+const isAdmin = require('./gatekeeper')
 // Do we need an all users request?? Is this specifically for Admin use only??
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll()
     res.json(users)
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // Single User
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAdmin, async (req, res, next) => {
   try {
     //check to see if id is an actual number
     const singleUser = await User.findByPk(req.params.id)
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // Create User
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     //destructure req.body before sending into create only send in necessary info
     const newUser = await User.create(req.body)
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 // Update User
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: {
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 // Remove User
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id)
     await user.destroy()

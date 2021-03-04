@@ -1,0 +1,8 @@
+module.exports = function isAdmin(req, res, next) {
+  console.log('isAdmin auth ran---user:', req.user.role)
+  if (req.user.role === 'admin') {
+    return next()
+  }
+  console.log('not enough permissions-show error')
+  res.send('please go back. Only administrators beyond this point')
+}
