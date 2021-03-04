@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const Cat = require('./models/cats')
+const Cat = require('./models/cat')
 const User = require('./models/user')
 
 // This is a great place to establish associations between your models
@@ -13,4 +13,3 @@ module.exports = {
   Cat,
   User
 }
-

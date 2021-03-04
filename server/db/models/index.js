@@ -1,5 +1,4 @@
 const User = require('./user')
-
 const Cat = require('./cat')
 const ProductOrder = require('./productOrder')
 
@@ -18,7 +17,6 @@ const ProductOrder = require('./productOrder')
  */
 module.exports = {
   User,
-
   Cat,
   ProductOrder
 }

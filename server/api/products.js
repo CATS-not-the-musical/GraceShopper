@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const Cats = require('../db/models/cats')
+const Cat = require('../db/models/cat')
 
 // All Cats
 router.get('/', async (req, res, next) => {
   try {
-    const allCats = await Cats.findAll()
+    const allCats = await Cat.findAll()
     res.json(allCats)
   } catch (err) {
     next(err)
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 // Single Product
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleCat = await Cats.findByPk(req.params.id)
+    const singleCat = await Cat.findByPk(req.params.id)
     res.send(singleCat)
   } catch (err) {
     next(err)
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
 // Create Product
 router.post('/', async (req, res, next) => {
   try {
-    const newCat = await Cats.create(req.body)
+    const newCat = await Cat.create(req.body)
     res.json(newCat)
   } catch (err) {
     next(err)
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
 // Update Product
 router.get('/:id', async (req, res, next) => {
   try {
-    const updatedCat = await Cats.update(req.body, {
+    const updatedCat = await Cat.update(req.body, {
       where: {
         id: req.params.id
       },
@@ -49,7 +49,7 @@ router.get('/:id', async (req, res, next) => {
 // Delete Product
 router.delete('/:id', async (req, res, next) => {
   try {
-    const cat = await Cats.findByPk(req.params.id)
+    const cat = await Cat.findByPk(req.params.id)
     await cat.destroy()
     res.send(cat)
   } catch (err) {
