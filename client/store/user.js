@@ -17,15 +17,15 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
+const getUser = (user) => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-const getAllUsers = allUsers => ({type: GET_ALL_USERS, allUsers})
+const getAllUsers = (allUsers) => ({type: GET_ALL_USERS, allUsers})
 const updateUser = (user, value) => ({type: UPDATE_USER, user, value})
 
 /**
  * THUNK CREATORS
  */
-export const me = () => async dispatch => {
+export const me = () => async (dispatch) => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
@@ -34,7 +34,7 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const auth = (email, password, method) => async (dispatch) => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
@@ -50,7 +50,7 @@ export const auth = (email, password, method) => async dispatch => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch) => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
@@ -60,9 +60,9 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const allUsers = () => async dispatch => {
+export const fetchAllUsers = () => async (dispatch) => {
   try {
-    const {data} = await axios.get('/users')
+    const {data} = await axios.get('/api/users')
     dispatch(getAllUsers(data))
   } catch (error) {
     console.log(error)
@@ -70,7 +70,7 @@ export const allUsers = () => async dispatch => {
 }
 
 export const fetchUpdatedUser = (user, updatedUser) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const {data} = await axios.put(`/api/users/${user}`, updatedUser)
       dispatch(updateUser(data))
@@ -83,16 +83,14 @@ export const fetchUpdatedUser = (user, updatedUser) => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
     case GET_ALL_USERS:
-      return action.allUsers
-    case UPDATE_USER:
-      return {...state, [action.user]: action.value}
+      return {...state, allUsers: action.allUsers}
     default:
       return state
   }
