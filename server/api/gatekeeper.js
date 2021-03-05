@@ -1,5 +1,5 @@
 module.exports = function isAdmin(req, res, next) {
-  console.log('isAdmin auth ran---user:', req.user.role)
+  console.log('isAdmin auth ran---user:', req.user)
   if (req.user) {
     if (req.user.role === 'admin') {
       return next()
