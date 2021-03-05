@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {Cat} = require('../db')
 const isAdmin = require('./gatekeeper')
 
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   console.log('cat route')
   try {
     const allCats = await Cat.findAll()
