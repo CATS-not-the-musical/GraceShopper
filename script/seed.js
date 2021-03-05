@@ -37,21 +37,24 @@ async function seed() {
       })
     ])
   }
+  console.log('create Order')
   const orderToCreate = 10
   for (let i = 0; i < orderToCreate; i++) {
     await Promise.all([
       Order.create({
-        userId: i
+        total: 0,
+        fulfilledStatus: false,
+        userId: i + 1
       })
     ])
   }
-
+  console.log('create order lines')
   const ProductToCreate = 10
   for (let i = 0; i < ProductToCreate; i++) {
     await Promise.all([
       ProductOrder.create({
-        catId: 1,
-        orderId: 1
+        catId: i + 1,
+        orderId: i + 1
       })
     ])
   }
