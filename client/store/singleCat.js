@@ -4,11 +4,15 @@ const SINGLE_CAT = 'SINGLE_CAT'
 const UPDATE_CAT = 'UPDATE_CAT'
 
 const initialState = {
-  name: '',
-  category: '',
+  breed: '',
+  firstName: '',
+  lastName: '',
+  age: '',
+  adoptionStatus: '',
+  adoptionFee: '',
   description: '',
-  price: '',
-  image: ''
+  image: '',
+  ownerId: ''
 }
 
 export const singleCat = data => ({
@@ -37,7 +41,8 @@ export const fetchSingleCat = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/cats/${id}`)
-      dispatch(fetchSingleCat(data))
+      console.log('this is the data', data)
+      dispatch(singleCat(data))
     } catch (err) {
       console.log(err)
     }
