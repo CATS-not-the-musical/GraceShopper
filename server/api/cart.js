@@ -44,5 +44,5 @@ router.delete('/:catid', async (req, res, next) => {
   }
 })
 
-route.put('/:catid', async (req, res, next) => {})
+router.put('/:catid', async (req, res, next) => {})
 module.exports = router
