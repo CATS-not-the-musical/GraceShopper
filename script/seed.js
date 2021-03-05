@@ -50,7 +50,7 @@ async function seed() {
     await Promise.all([
       ProductOrder.create({
         catId: 1,
-        OrderId: 1
+        orderId: 1
       })
     ])
   }
