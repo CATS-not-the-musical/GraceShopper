@@ -9,20 +9,23 @@ export class SingleCat extends React.Component {
   }
   render() {
     const cat = this.props.singleCat
-    console.log('singleCat render', this.props)
-    return (
-      <div>
-        <h1>
-          {cat.firstName} {cat.lastName}
-        </h1>
-        <h2>{cat.breed}</h2>
-        <img src={`${cat.image}`} />
-        <h3>Age: {cat.age}</h3>
-        <h3>Adoption Status: {cat.adoptionStatus}</h3>
-        <h3>Adoption Fee: {cat.adoptionFee}</h3>
-        <h3>Description: {cat.description}</h3>
-      </div>
-    )
+    if (!cat) {
+      return <h1>Loading...</h1>
+    } else {
+      return (
+        <div>
+          <h1>
+            {cat.firstName} {cat.lastName}
+          </h1>
+          <h2>{cat.breed}</h2>
+          <img src={`${cat.image}`} />
+          <h3>Age: {cat.age}</h3>
+          <h3>Adoption Status: {cat.adoptionStatus}</h3>
+          <h3>Adoption Fee: {cat.adoptionFee}</h3>
+          <h3>Description: {cat.description}</h3>
+        </div>
+      )
+    }
   }
 }
 
