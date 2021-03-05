@@ -7,6 +7,7 @@ import {me} from './store'
 import AllCats from './components/Cats'
 import SingleCat from './components/SingleCat'
 import RemoveCat from './components/RemoveCat'
+import Admin from './components/admin'
 /**
  * COMPONENT
  */
@@ -29,6 +30,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/admin" component={Admin} />
           </Switch>
         )}
 
