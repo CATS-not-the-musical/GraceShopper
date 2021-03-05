@@ -37,16 +37,16 @@ async function seed() {
       })
     ])
   }
-  const orderToCreate = 1
+  const orderToCreate = 10
   for (let i = 0; i < orderToCreate; i++) {
     await Promise.all([
       Order.create({
-        userId: 1
+        userId: i
       })
     ])
   }
 
-  const ProductToCreate = 1
+  const ProductToCreate = 10
   for (let i = 0; i < ProductToCreate; i++) {
     await Promise.all([
       ProductOrder.create({
