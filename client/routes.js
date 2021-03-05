@@ -7,6 +7,7 @@ import {me} from './store'
 import AllCats from './components/Cats'
 import SingleCat from './components/SingleCat'
 import RemoveCat from './components/RemoveCat'
+import UpdateCat from './components/UpdateCat'
 /**
  * COMPONENT
  */
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/cats" component={AllCats} />
         <Route exact path="/cats/:id/remove" component={RemoveCat} />
+        <Route exact path="/cats/:id/update" component={UpdateCat} />
         <Route path="/cats/:id" component={SingleCat} />
         {isLoggedIn && (
           <Switch>

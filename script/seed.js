@@ -28,6 +28,7 @@ async function seed() {
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
       Cat.create({
+        breed: 'null',
         firstName: `Paulo${i}`,
         lastName: `Smith${catsToCreate - i}`,
         adoptionStatus: 'available',
