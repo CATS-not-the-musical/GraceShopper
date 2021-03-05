@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const ALL_CATS = 'ALL_CATS'
 const REMOVE_CAT = 'REMOVE_CAT'
+const NEW_CAT = 'NEW_CAT'
 
 const initialState = []
 
@@ -12,7 +13,12 @@ export const allCats = data => ({
 
 export const removeCat = cat => ({
   type: REMOVE_CAT,
-  CAT
+  cat
+})
+
+export const newCat = cat => ({
+  type: NEW_CAT,
+  cat
 })
 
 export default function catReducer(state = initialState, action) {
@@ -24,6 +30,8 @@ export default function catReducer(state = initialState, action) {
         return cat.id !== action.cat
       })
       return filteredCats
+    case NEW_CAT:
+      return action.cat
     default:
       return state
   }
@@ -40,11 +48,24 @@ export const fetchAllCats = () => {
   }
 }
 
-export const deleteCat = (id, history) => {
+export const newCatThunk = (cat, history) => {
   return async dispatch => {
     try {
-      const deleted = axios.delete(`/api/cats/${id}`).data
-      dispatch(removeCat(id))
+      const {data} = await axios.post('/api/cats', cat)
+      dispatch(newCat(data))
+      history.push('/')
+    } catch (err) {
+      console.log(err.response.data)
+      throw err
+    }
+  }
+}
+
+export const removeCatThunk = (id, history) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.delete(`/api/cats/${id}`)
+      dispatch(removeCat(data))
       history.push('/')
       history.goForward()
     } catch (err) {

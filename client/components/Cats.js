@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchAllCats} from '../store/cat'
 
@@ -7,10 +8,10 @@ class AllCats extends React.Component {
     this.props.allCats()
   }
   render() {
-    if (!this.props.cats) {
+    const Cats = this.props.cats
+    if (!Cats) {
       return <h1>Loading...</h1>
     } else {
-      const Cats = this.props.cats
       return (
         <div>
           <h1>Cats-Travis Integrated</h1>
@@ -18,12 +19,16 @@ class AllCats extends React.Component {
             return (
               <div key={cat.id}>
                 <h2>
-                  <NavLink to={`/cats/${cat.id}`}>{cat.name}</NavLink>
+                  <NavLink to={`/cats/${cat.id}`}>
+                    {cat.firstName} + ' ' + {cat.lastName}
+                  </NavLink>
                 </h2>
-                <h3>Category: {cat.category}</h3>
-                <h4>Description: {cat.description}</h4>
-                <h4>Price: {cat.price}</h4>
+                <h2>{cat.breed}</h2>
                 <img src={`${cat.image}`} />
+                <h3>Age: {cat.age}</h3>
+                <h3>Adoption Status: {cat.adoptionStatus}</h3>
+                <h3>Adoption Fee: {cat.adoptionFee}</h3>
+                <h3>Description: {cat.description}</h3>
               </div>
             )
           })}

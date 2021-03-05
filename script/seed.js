@@ -18,15 +18,17 @@ async function seed() {
         lastName: 'Daniel',
         email: `cody${i}@email.com`,
         password: '123',
-        image: `/images/${Math.floor(Math.random() * 65)}.jpg`
+        image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
+        role: `${Math.floor(Math.random() * 2) === 1 ? 'admin' : 'user'}`
       })
     ])
   }
-  //for loop to create products
+  //for loop to create cats
   const catsToCreate = 100
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
       Cat.create({
+        breed: 'null',
         firstName: `Paulo${i}`,
         lastName: `Smith${catsToCreate - i}`,
         adoptionStatus: 'available',
@@ -36,21 +38,24 @@ async function seed() {
       })
     ])
   }
-  const orderToCreate = 1
+  console.log('create Order')
+  const orderToCreate = 10
   for (let i = 0; i < orderToCreate; i++) {
     await Promise.all([
       Order.create({
-        userId: 1
+        total: 0,
+        fulfilledStatus: false,
+        userId: i + 1
       })
     ])
   }
-
-  const ProductToCreate = 1
+  console.log('create order lines')
+  const ProductToCreate = 10
   for (let i = 0; i < ProductToCreate; i++) {
     await Promise.all([
       ProductOrder.create({
-        catId: 1,
-        orderId: 1
+        catId: i + 1,
+        orderId: i + 1
       })
     ])
   }
