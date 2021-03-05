@@ -31,7 +31,8 @@ const User = db.define('user', {
     }
   },
   role: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'admin'
   },
   salt: {
     type: Sequelize.STRING,
