@@ -13,12 +13,15 @@ notifications:
 install:
   - npm ci
 before_script:
-  - psql -c 'create database "GraceShopper-test";' -U postgres
+  - psql -c 'create database "GraceShopper";' -U postgres
 script:
   - npm test
   - npm run build-client
 deploy:
+  skip_cleanup: true
   provider: heroku
   app: cats-not-the-musical
+  on:
+    branch: master
   api_key:
-    secure: HxmOklP8+UeaW+qe/hlg5YSBqIIOARw9ykoetSDGxkqD7Ri/m7AOr0ROJSi+U94/gTGXKBUtoZ09f8T+Ae9RBbZaoo0yt9Fgms8TaSaDHsmhC0VO/CPO49pKkwrRqC7WKG/5c7rLlHjyQFDp5FR78JsoztgNVBv6QWdwUmca/sxjNXKMV/wJxI0fq8fRtG36gu+FIWirUxcStJ3+CRhgyNlXVdXlxV9A1OleKCxBaLS+AHcquBZa9FhgxoZgyz3v/uwVU1FzEmBM+slB1QMYkauJB+9g0F2Yfq7m5cVwQptyAV4Lsgs3VhSpxxqZCKTTFastNGttHAh3xKvN+eKMReoohhQUfDueg3RGtyIgcuuxjKY52/q6GrPExLLw5xgwm3CAnnYXGlfrWQ70R3VHD/a9AtLxROReYMyue9ORuRRkcfn7EYGiU9/MGT4BXB6Cp8MpwnFE48yPzWJKWmmlyiveA2RfqOiJ83xGP+Hr/jiCUY/Obp/NVAYSQlIqOt2em7V3I3dEWnIsfL+wSF3XeYLmUn/cRcZUW7OT/ZPaFBmsVLs6tdeQIpjMYrhdfSuEVu68zMrxM/5y/Ue/zURePCT5vnJc3SzoclKfQcdJEES4Mq39FulStodDwBHNw8DKI+M7LfDgDWxkfBF2ggIrFxmO+CbPMevO4SZx82OPOts=
+    secure: vMA7F306gj3alOc/HPKlOkfYXaut2x9YH4lME7QrllPUffu++31OT1ufZskAty6GovxACxE7gCcvBDiAsOfZw/ydu7dUcsn+q3dzpbyGa7erGJTQUad8wEW6OUboO+rLf2B7ScrDzgBMRbmcUTWC+0W2QorSKwS8OL2n5xcBYSxjgr1ZXiVBLqqKkYNySMxurwfW1z34plo4khoVtGaLVCBXbiCGYOhOssQ02wUMW6IXafYz46+TzJC7Uu4jdE/omM72dUyxLehJvSlYHDKNB1CCpcPooZK0OFbzyIFr2Oo4N0ZnGHhmExGWzoZN7kprgAf2i0xbMyFX8aBp192iuo1pvC10tuDQr3sOh58olnZAu9Yh0gOY+i1NT+U8lwHYnbLGVYKMp+MKBApj4Tyvaj3ALKX5w52PJdMmdKyw6OXZfCUPFxF5/YeEDev2avEODOA4aRlzlyM+nS0EeZN5dbN9Lbnrk2eiE453Ol/jyJpgJssX+dnDIiOyF8hdlGWLBkOO7/AY/SttgesatXKCkF4leMqviGLjocb68JWcQ6SKXH3P+kVlRRs7g0cQOiDa1L1B70XRNCDdauktPcnzt5Bxib31jurXfWiXKgoF6fleU6x0ix++XjuQPl8O1MEnffUqJZRxwoSJVc6vg/jNo9UkTB+++qysqhrZbFlw7p0=
