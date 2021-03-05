@@ -27,7 +27,6 @@ if (process.env.NODE_ENV === 'test') {
  * Node process on process.env
  */
 if (process.env.PGHOST === 'localhost') require('../secrets')
-console.log('process env PGHOST', process.env.PGHOST)
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
 
