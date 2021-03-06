@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/:id', isAdmin, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const singleCat = await Cat.findByPk(req.params.id)
     res.json(singleCat)
@@ -19,7 +19,8 @@ router.get('/:id', isAdmin, async (req, res, next) => {
     next(err)
   }
 })
-router.post('/', isAdmin, async (req, res, next) => {
+//api/cats
+router.post('/', async (req, res, next) => {
   try {
     const newCat = await Cat.create(req.body)
     res.json(newCat)

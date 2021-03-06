@@ -14,13 +14,13 @@ class AllCats extends React.Component {
     } else {
       return (
         <div>
-          <h1>Cats-Travis Integrated</h1>
+          <h1>Cats</h1>
           {Cats.map(cat => {
             return (
               <div key={cat.id}>
                 <h2>
                   <NavLink to={`/cats/${cat.id}`}>
-                    {cat.firstName} + ' ' + {cat.lastName}
+                    {cat.firstName} {cat.lastName}
                   </NavLink>
                 </h2>
                 <h2>{cat.breed}</h2>

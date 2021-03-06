@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {fetchAllUsers} from '../store/user'
 import {fetchAllCats} from '../store/cat'
 
@@ -75,9 +75,11 @@ class Admin extends React.Component {
               Cats
             </button>
           </div>
-          <button className="btn btn-primary btn-lg" type="button">
-            Add
-          </button>
+          <NavLink to="/newcat">
+            <button className="btn btn-primary btn-lg" type="button">
+              Add Cat
+            </button>
+          </NavLink>
           {this.state.current.map(user => {
             return (
               <div key={user.id}>
@@ -86,12 +88,16 @@ class Admin extends React.Component {
                   {user.firstName} {user.lastName}
                 </h1>
                 <h2>{user.email}</h2>
-                <button className="btn btn-primary btn-lg" type="button">
-                  Edit
-                </button>
-                <button className="btn btn-primary btn-lg" type="button">
-                  Delete
-                </button>
+                <NavLink to={`/cats/${user.id}/update`}>
+                  <button className="btn btn-primary btn-lg" type="button">
+                    Edit
+                  </button>
+                </NavLink>
+                <NavLink to={`/cats/${user.id}/remove`}>
+                  <button className="btn btn-primary btn-lg" type="button">
+                    Delete
+                  </button>
+                </NavLink>
               </div>
             )
           })}

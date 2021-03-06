@@ -9,6 +9,7 @@ import SingleCat from './components/SingleCat'
 import RemoveCat from './components/RemoveCat'
 import Admin from './components/admin'
 import UpdateCat from './components/UpdateCat'
+import NewCat from './components/NewCat'
 
 /**
  * COMPONENT
@@ -19,7 +20,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn, role} = this.props
+    const {isLoggedIn} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -29,6 +30,7 @@ class Routes extends Component {
         <Route exact path="/cats/:id/remove" component={RemoveCat} />
         <Route exact path="/cats/:id/update" component={UpdateCat} />
         <Route path="/cats/:id" component={SingleCat} />
+        <Route exact path="/newcat" component={NewCat} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
