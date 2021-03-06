@@ -6,13 +6,14 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, role}) => (
   <div>
-    <h1>GraceShopper - Cats -travis heroku integrated</h1>
+    <h1>GraceShopper - Cats not the musical </h1>
     <nav>
       {role === 'admin' ? (
         <div>
           {/* The navbar will show these links after you log in if you are an admin*/}
           <Link to="/home">Home</Link>
           <Link to="/admin">Admin</Link>
+          <Link to="/cart">Cardboard Box</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -21,6 +22,7 @@ const Navbar = ({handleClick, isLoggedIn, role}) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+          <Link to="/cart">Cardboard Box</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>

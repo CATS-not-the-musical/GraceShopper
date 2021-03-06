@@ -60,10 +60,12 @@ export const removeFromCartThunk = catid => {
   }
 }
 //put to update post to create
-export const addToCartThunk = item => {
+export const addToCartThunk = catId => {
+  console.log('This is our CatID and our add to cart thunk', catId)
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/cart', item)
+      const {data} = await axios.post('/api/cart', {catId: catId})
+      console.log('this is our data from axios call', data)
       dispatch(addToCart(data))
     } catch (error) {
       console.log(error)
