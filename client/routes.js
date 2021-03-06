@@ -9,6 +9,7 @@ import SingleCat from './components/SingleCat'
 import RemoveCat from './components/RemoveCat'
 import Admin from './components/admin'
 import UpdateCat from './components/UpdateCat'
+import Cart from './components/cart'
 import NewCat from './components/NewCat'
 
 /**
@@ -34,6 +35,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route path="/cart" component={Cart} />
             <Route path="/home" component={UserHome} />
             <Route path="/admin" component={Admin} />
           </Switch>

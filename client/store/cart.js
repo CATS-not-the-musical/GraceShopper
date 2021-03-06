@@ -5,14 +5,15 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const DECREASE_QTY = 'DECREASE_QTY'
-const INCREASE_QTY = 'INCREASE_QTY'
+const UPDATE_QTY = 'UPDATE_QTY'
+// const DECREASE_QTY = 'DECREASE_QTY'
+// const INCREASE_QTY = 'INCREASE_QTY'
 
 //action creators
 
-export const getCart = user => ({
+export const getCart = cart => ({
   type: GET_CART,
-  user
+  cart
 })
 
 export const addToCart = item => ({
@@ -25,20 +26,17 @@ export const removeFromCart = item => ({
   item
 })
 
-export const decreaseQty = item => ({
-  type: DECREASE_QTY,
-  item
+export const updateQty = (item, quantity) => ({
+  type: UPDATE_QTY,
+  item,
+  quantity
 })
 
-export const increaseQty = item => ({
-  type: INCREASE_QTY,
-  item
-})
-
-export const getCartThunk = user => {
+export const getCartThunk = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('')
+      const {data} = await axios.get('/api/cart')
+      console.log('got cart', data)
       dispatch(getCart(data))
     } catch (error) {
       console.log(error)
@@ -46,10 +44,26 @@ export const getCartThunk = user => {
   }
 }
 
-export const addToCartThunk = user => {
+export const removeFromCartThunk = catid => {
+  console.log('catid', catid)
   return async dispatch => {
     try {
-      const {data} = await axios.post()
+      const {data} = await axios.delete('/api/cart', {data: {catid: catid}})
+      console.log(
+        'remove thunk from store destructure data from axios call',
+        data
+      )
+      dispatch(getCartThunk())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+//put to update post to create
+export const addToCartThunk = item => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post('/api/cart', item)
       dispatch(addToCart(data))
     } catch (error) {
       console.log(error)
@@ -57,56 +71,34 @@ export const addToCartThunk = user => {
   }
 }
 
-export const removeFromCartThunk = (item, history) => {
+//put to update post to create
+//put route to update quantity ??
+export const updateQtyCartThunk = (itemid, quantity) => {
   return async dispatch => {
+    console.log('this is', itemid, quantity)
     try {
-      const {data} = await axios.delete()
-      dispatch(removeFromCart(data))
-      history.push('/')
+      await axios.put('/api/cart', {id: itemid, quantity})
+      //dispatch(updateQty(item, quantity))
+      dispatch(getCartThunk())
     } catch (error) {
       console.log(error)
     }
   }
 }
 
-export const decreaseQtyCartThunk = (item, history) => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.delete()
-      dispatch(decreaseQty(data))
-      history.push('/')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+const initialState = []
 
-export const increaseQtyCartThunk = (item, history) => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.delete()
-      dispatch(increaseQty(data))
-      history.push('/')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
-const initialState = {items: []}
-
-export function cartReducer(state = initialState, action) {
+export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
-      return action.user
+      return action.cart
     case ADD_TO_CART:
-      return {...state, cartItems: action.item}
+      return [...state, action.item]
     case REMOVE_FROM_CART:
-      return {...state, cartItem: action.item} //redo with filter
-    case INCREASE_QTY:
-      return {...state, cartItem: action.item}
-    case DECREASE_QTY:
-      return {...state, cartItem: action.item}
+      return {
+        ...state,
+        items: state.filter(item => item.id !== action.itemid)
+      }
     default:
       return state
   }
@@ -143,3 +135,40 @@ export function cartReducer(state = initialState, action) {
 //     }
 //   })
 // }
+
+// export const decreaseQtyCartThunk = (item, history) => {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.delete('/api/cart')
+//       dispatch(decreaseQty(data))
+//       history.push('/')
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+// export const increaseQtyCartThunk = (item, history) => {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.put('/api/cart')
+//       dispatch(increaseQty(data))
+//       history.push('/')
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+// export const increaseQty = item => ({
+//   type: INCREASE_QTY,
+//   item
+// })
+// export const decreaseQty = item => ({
+//   type: DECREASE_QTY,
+//   item
+// })
+
+//  case UPDATE_QTY:
+//       return {...state, cartItem: action.item}
+//     case DECREASE_QTY:
+//       return {...state, cartItem: action.item}

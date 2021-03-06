@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Cats from './components/Cats'
 import {Navbar} from './components'
 import Routes from './routes'
 
