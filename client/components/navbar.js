@@ -7,7 +7,6 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn, role}) => (
   <div>
     <h1>GraceShopper - Cats -travis heroku integrated</h1>
-    {console.log('ROLE:', role)}
     <nav>
       {role === 'admin' ? (
         <div>
