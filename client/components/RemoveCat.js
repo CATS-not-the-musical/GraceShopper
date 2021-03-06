@@ -14,7 +14,7 @@ class RemoveCat extends React.Component {
   }
 
   handleDelete() {
-    this.props.removeCatThunk(this.props.match.params.id)
+    this.props.removeCat(this.props.match.params.id)
   }
 
   render() {
