@@ -1,12 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateCat, fetchUpdateCat} from '../store/singleCat'
+import {updateCat, fetchUpdateCat, fetchSingleCat} from '../store/singleCat'
 
 class UpdateCat extends React.Component {
   constructor() {
     super()
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  componentDidMount() {
+    this.props.fetchSingleCat(this.props.match.params.id)
   }
 
   handleChange(event) {
@@ -23,12 +26,12 @@ class UpdateCat extends React.Component {
       adoptionStatus: this.props.adoptionStatus,
       adoptionFee: this.props.adoptionFee,
       description: this.props.description,
-      image: this.props.image,
-      ownerId: this.props.ownerId
+      image: this.props.image
     })
   }
 
   render() {
+    console.log('Render PROPS:', this.props)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -95,14 +98,6 @@ class UpdateCat extends React.Component {
               value={this.props.description}
               onChange={this.handleChange}
             />
-            <div>
-              <label htmlFor="ownerId">Owner ID:</label>
-              <input
-                name="ownerId"
-                value={this.props.ownerId}
-                onChange={this.handleChange}
-              />
-            </div>
           </div>
           <button type="submit">Submit</button>
         </form>
@@ -112,7 +107,7 @@ class UpdateCat extends React.Component {
 }
 
 const mapState = state => {
-  console.log('this is the state for Update', state)
+  console.log('STATE:', state)
   return {
     breed: state.singleCat.breed,
     firstName: state.singleCat.firstName,
@@ -133,6 +128,9 @@ const mapDispatch = dispatch => {
     },
     updateCampusThunk: (id, updatedCat) => {
       dispatch(fetchUpdateCat(id, updatedCat))
+    },
+    fetchSingleCat: id => {
+      dispatch(fetchSingleCat(id))
     }
   }
 }

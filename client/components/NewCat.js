@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 import {newCatThunk} from '../store/cat'
 
 export class NewCat extends Component {
@@ -42,7 +42,7 @@ export class NewCat extends Component {
       image
     } = this.state
     return (
-      <form onSumbit={this.handleSumbit}>
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor="breed">Breed</label>
         <input name="breed" value={breed} onChange={this.handleChange} />
 
@@ -84,6 +84,7 @@ export class NewCat extends Component {
         <input name="image" value={image} onChange={this.handleChange} />
 
         <button type="submit">Submit</button>
+
         <Link to="/cats">Cancel</Link>
       </form>
     )
