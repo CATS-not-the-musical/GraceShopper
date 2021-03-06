@@ -2,10 +2,19 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchAllCats} from '../store/cat'
-
+import {addToCartThunk, updateQtyCartThunk, getCartThunk} from '../store/cart'
 class AllCats extends React.Component {
+  constructor() {
+    super()
+    this.handleAdd = this.handleAdd.bind(this)
+  }
   componentDidMount() {
     this.props.allCats()
+    this.props.getCart()
+  }
+  handleAdd(id) {
+    this.props.addToCart(id)
+    window.alert('cat added to cardboard box!')
   }
   render() {
     const Cats = this.props.cats
@@ -27,7 +36,11 @@ class AllCats extends React.Component {
                 <h3>Age: {cat.age}</h3>
                 <h3>Adoption Status: {cat.adoptionStatus}</h3>
                 <h3>Adoption Fee: {cat.adoptionFee}</h3>
-                <button type="button" className="btn btn-primary btn-sm">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => this.handleAdd(cat.id)}
+                >
                   Adopt Me
                 </button>
               </div>
@@ -41,13 +54,18 @@ class AllCats extends React.Component {
 
 const mapState = state => {
   return {
-    cats: state.cats
+    cats: state.cats,
+    cart: state.cart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    allCats: () => dispatch(fetchAllCats())
+    allCats: () => dispatch(fetchAllCats()),
+    addToCart: catId => dispatch(addToCartThunk(catId)),
+    increaseQty: (itemId, quantity) =>
+      dispatch(updateQtyCartThunk(itemId, quantity)),
+    getCart: () => dispatch(getCartThunk())
   }
 }
 

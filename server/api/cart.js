@@ -72,4 +72,23 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const userOrder = await Order.findOrCreate({
+      where: {userId: req.user.id, fulfilledStatus: false}
+    })
+    const userOrderId = userOrder[0].id
+    const newCat = ProductOrder.build({
+      orderId: userOrderId,
+      catId: req.body.catId,
+      quantity: 1
+    })
+    await newCat.save()
+    const output = newCat.toJSON()
+    res.json(output)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router

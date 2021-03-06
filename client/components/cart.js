@@ -26,7 +26,10 @@ class Cart extends Component {
             {items.length === 0 ? (
               'Cart is empty'
             ) : (
-              <h2> You Have {items.length} products in your cart.</h2>
+              <h2>
+                {' '}
+                You have {items.length} types of cats in your cardboard box!
+              </h2>
             )}
           </div>
           <div>
