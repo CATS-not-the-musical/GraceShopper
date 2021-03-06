@@ -38,6 +38,7 @@ router.delete('/:id', isAdmin, async (req, res, next) => {
   }
 })
 router.put('/:id', isAdmin, async (req, res, next) => {
+  console.log('We are in the express put route', req.body)
   try {
     const updatedCat = await Cat.update(req.body, {
       where: {
@@ -45,6 +46,7 @@ router.put('/:id', isAdmin, async (req, res, next) => {
       },
       returning: true
     })
+    console.log('UpdatedCat', updatedCat)
     res.send(updatedCat)
   } catch (err) {
     next(err)

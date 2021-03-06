@@ -38,7 +38,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="breed">Breed:</label>
             <input
               name="breed"
-              value={this.props.breed}
+              defaultValue={this.props.breed}
               onChange={this.handleChange}
             />
           </div>
@@ -46,7 +46,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="firstName">First Name:</label>
             <input
               name="firstName"
-              value={this.props.firstName}
+              defaultValue={this.props.firstName}
               onChange={this.handleChange}
             />
           </div>
@@ -54,7 +54,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="lastName">Last Name:</label>
             <input
               name="lastName"
-              value={this.props.lastName}
+              defaultValue={this.props.lastName}
               onChange={this.handleChange}
             />
           </div>
@@ -62,7 +62,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="image">Image:</label>
             <input
               name="image"
-              value={this.props.image}
+              defaultValue={this.props.image}
               onChange={this.handleChange}
             />
           </div>
@@ -70,7 +70,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="age">Age:</label>
             <input
               name="age"
-              value={this.props.age}
+              defaultValue={this.props.age}
               onChange={this.handleChange}
             />
           </div>
@@ -78,7 +78,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="adoptionStatus">Adoption Status:</label>
             <input
               name="adoptionStatus"
-              value={this.props.adoptionStatus}
+              defaultValue={this.props.adoptionStatus}
               onChange={this.handleChange}
             />
           </div>
@@ -86,7 +86,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="adoptionFee">Adoption Fee:</label>
             <input
               name="adoptionFee"
-              value={this.props.adoptionFee}
+              defaultValue={this.props.adoptionFee}
               onChange={this.handleChange}
             />
           </div>
@@ -94,7 +94,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="description">Description:</label>
             <input
               name="description"
-              value={this.props.description}
+              defaultValue={this.props.description}
               onChange={this.handleChange}
             />
           </div>
@@ -124,7 +124,7 @@ const mapDispatch = dispatch => {
     updateCat: (data, value) => {
       dispatch(updateCat(data, value))
     },
-    updateCampusThunk: (id, updatedCat) => {
+    fetchUpdateCat: (id, updatedCat) => {
       dispatch(fetchUpdateCat(id, updatedCat))
     },
     fetchSingleCat: id => {
