@@ -31,7 +31,6 @@ class UpdateCat extends React.Component {
   }
 
   render() {
-    console.log('Render PROPS:', this.props)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -107,7 +106,6 @@ class UpdateCat extends React.Component {
 }
 
 const mapState = state => {
-  console.log('STATE:', state)
   return {
     breed: state.singleCat.breed,
     firstName: state.singleCat.firstName,
