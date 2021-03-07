@@ -6,6 +6,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QTY = 'UPDATE_QTY'
+
 // const DECREASE_QTY = 'DECREASE_QTY'
 // const INCREASE_QTY = 'INCREASE_QTY'
 
@@ -66,9 +67,22 @@ export const addToCartThunk = catId => {
     try {
       const {data} = await axios.post('/api/cart', {catId: catId})
       console.log('this is our data from axios call', data)
-      dispatch(addToCart(data))
+      dispatch(getCartThunk())
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+export const checkoutThunk = () => {
+  return async dispatch => {
+    console.log('start of checkout thunk')
+    try {
+      await axios.put('/api/cart/checkout', {})
+      console.log('checkoutThunk,passed axios call')
+      dispatch(getCartThunk())
+    } catch (err) {
+      console.log(err)
     }
   }
 }
