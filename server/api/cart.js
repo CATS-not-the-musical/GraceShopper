@@ -72,6 +72,19 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.put('/checkout', async (req, res, next) => {
+  try {
+    const userOrder = await Order.findOne({
+      where: {userId: req.user.id, fulfilledStatus: false}
+    })
+    userOrder.fulfilledStatus = true
+    await userOrder.save()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const userOrder = await Order.findOrCreate({

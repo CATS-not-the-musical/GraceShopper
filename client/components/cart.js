@@ -3,21 +3,31 @@ import {connect} from 'react-redux'
 import {
   getCartThunk,
   removeFromCartThunk,
-  updateQtyCartThunk
+  updateQtyCartThunk,
+  checkoutThunk
 } from '../store/cart'
 
 class Cart extends Component {
+  constructor() {
+    super()
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
   componentDidMount() {
+    console.log('compoenent did mount')
     this.props.getCart()
   }
 
-  handleRemove() {}
-  handleIncreaseQty() {}
-  handleDecreaseQty() {}
+  handleCheckout() {
+    //axios call
+    this.props.checkout()
+    this.props.getCart()
+    window.alert('your cats will arrive in a cardboardbox in 1 day')
+  }
+
   render() {
     console.log('this is props', this.props)
     if (!this.props.cart[0]) {
-      return <h1>Loading....</h1>
+      return <h1>Empty Cart</h1>
     } else {
       const items = this.props.cart[0].cats
       return (
@@ -33,6 +43,16 @@ class Cart extends Component {
             )}
           </div>
           <div>
+            <button
+              className="btn btn-primary btn-sm"
+              type="button"
+              onClick={() => {
+                //change this user's order  filfilled status from false to true
+                this.handleCheckout()
+              }}
+            >
+              Check Out
+            </button>
             {items.map(item => {
               return (
                 <div key={item.id}>
@@ -100,7 +120,8 @@ const mapDispatchToProps = dispatch => {
     increase: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity + 1)),
     decrease: (itemid, quantity) =>
-      dispatch(updateQtyCartThunk(itemid, quantity - 1))
+      dispatch(updateQtyCartThunk(itemid, quantity - 1)),
+    checkout: () => dispatch(checkoutThunk())
   }
 }
 
