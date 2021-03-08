@@ -4,7 +4,7 @@ import {
   getCartThunk,
   removeFromCartThunk,
   updateQtyCartThunk,
-  checkoutThunk,
+  checkoutThunk
 } from '../store/cart'
 
 class Cart extends Component {
@@ -13,7 +13,6 @@ class Cart extends Component {
     this.handleCheckout = this.handleCheckout.bind(this)
   }
   componentDidMount() {
-    console.log('compoenent did mount')
     this.props.getCart()
   }
 
@@ -25,7 +24,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('this is props', this.props)
     if (!this.props.cart[0]) {
       return <h1>Empty Cart</h1>
     } else {
@@ -56,7 +54,7 @@ class Cart extends Component {
           </div>
 
           <div>
-            {items.map((item) => {
+            {items.map(item => {
               return (
                 <div key={item.id}>
                   <div className="cart">
@@ -115,19 +113,19 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
+const mapStateToProps = state => ({
+  cart: state.cart
 })
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(getCartThunk()),
-    remove: (catid) => dispatch(removeFromCartThunk(catid)),
+    remove: catid => dispatch(removeFromCartThunk(catid)),
     increase: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity + 1)),
     decrease: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity - 1)),
-    checkout: () => dispatch(checkoutThunk()),
+    checkout: () => dispatch(checkoutThunk())
   }
 }
 

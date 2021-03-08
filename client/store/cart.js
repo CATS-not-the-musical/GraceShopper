@@ -37,7 +37,6 @@ export const getCartThunk = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/cart')
-      console.log('got cart', data)
       dispatch(getCart(data))
     } catch (error) {
       console.log(error)
@@ -46,14 +45,9 @@ export const getCartThunk = () => {
 }
 
 export const removeFromCartThunk = catid => {
-  console.log('catid', catid)
   return async dispatch => {
     try {
       const {data} = await axios.delete('/api/cart', {data: {catid: catid}})
-      console.log(
-        'remove thunk from store destructure data from axios call',
-        data
-      )
       dispatch(getCartThunk())
     } catch (error) {
       console.log(error)
@@ -62,11 +56,9 @@ export const removeFromCartThunk = catid => {
 }
 //put to update post to create
 export const addToCartThunk = catId => {
-  console.log('This is our CatID and our add to cart thunk', catId)
   return async dispatch => {
     try {
       const {data} = await axios.post('/api/cart', {catId: catId})
-      console.log('this is our data from axios call', data)
       dispatch(getCartThunk())
     } catch (error) {
       console.log(error)
@@ -76,10 +68,8 @@ export const addToCartThunk = catId => {
 
 export const checkoutThunk = () => {
   return async dispatch => {
-    console.log('start of checkout thunk')
     try {
       await axios.put('/api/cart/checkout', {})
-      console.log('checkoutThunk,passed axios call')
       dispatch(getCartThunk())
     } catch (err) {
       console.log(err)
@@ -91,7 +81,6 @@ export const checkoutThunk = () => {
 //put route to update quantity ??
 export const updateQtyCartThunk = (itemid, quantity) => {
   return async dispatch => {
-    console.log('this is', itemid, quantity)
     try {
       await axios.put('/api/cart', {id: itemid, quantity})
       //dispatch(updateQty(item, quantity))
@@ -108,6 +97,7 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
+    //cases below not used yet.
     case ADD_TO_CART:
       return [...state, action.item]
     case REMOVE_FROM_CART:
@@ -119,7 +109,7 @@ export default function cartReducer(state = initialState, action) {
       return state
   }
 }
-
+// more code to better modify state
 // export const addToCart = (items, product) => dispatch => {
 //   const cartItems = items.splice()
 //   let productAllreadyInCart = false
