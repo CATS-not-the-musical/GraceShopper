@@ -32,7 +32,7 @@ class Cart extends Component {
       const items = this.props.cart[0].cats
       return (
         <div>
-          <div>
+          <div className="cart">
             {items.length === 0 ? (
               'Cart is empty'
             ) : (
@@ -54,11 +54,12 @@ class Cart extends Component {
               </div>
             )}
           </div>
+
           <div>
             {items.map((item) => {
               return (
                 <div key={item.id}>
-                  <div>
+                  <div className="cart">
                     <h3>
                       {' '}
                       Name: {item.firstName} {item.lastName}
@@ -73,12 +74,14 @@ class Cart extends Component {
                   </div>
                   <button
                     type="button"
+                    className="btn btn-primary btn-sm"
                     onClick={() => this.props.remove(item.productOrder.catId)}
                   >
                     Remove Item
                   </button>
                   <button
                     type="button"
+                    className="btn btn-primary btn-sm"
                     onClick={() =>
                       this.props.increase(
                         item.productOrder.catId,
@@ -90,6 +93,7 @@ class Cart extends Component {
                   </button>
                   <button
                     type="button"
+                    className="btn btn-primary btn-sm"
                     onClick={() => {
                       return item.productOrder.quantity === 1
                         ? {}

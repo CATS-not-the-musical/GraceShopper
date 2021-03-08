@@ -20,6 +20,30 @@ form div {
   display: inline-block;
 }
 
-.container {
+.productsContainer {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 1em 0;
+  padding: 1em;
+  border: solid;
+  text-align: center;
+  background-color: lightblue;
+
+}
+
+.products img {
+  margin: 0.5em 0;
+}
+
+h1 {
+  text-align: center
+}
+.cart {
+ text-align: center

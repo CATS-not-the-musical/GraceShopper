@@ -15,15 +15,16 @@ class AllUsers extends React.Component {
         {Users.map(user => {
           return (
             <div key={user.id}>
-              <h2>
-                <NavLink to={`/users/${user.id}`}>
-                  {user.firstName} {user.lastName}
-                </NavLink>
-                <img src={`${user.image}`} />
-              </h2>
-              <h2>{user.address}</h2>
-              <h2>{user.email}</h2>
-              <h3>{user.password}</h3>
+              <div>
+                <h2>
+                  <NavLink to={`/users/${user.id}`}>
+                    {user.firstName} {user.lastName}
+                  </NavLink>
+                  <img className="rounded-circle" src={`${user.image}`} />
+                </h2>
+                <h2>{user.address}</h2>
+                <h2>{user.email}</h2>
+              </div>
             </div>
           )
         })}

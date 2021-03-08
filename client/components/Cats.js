@@ -24,28 +24,30 @@ class AllCats extends React.Component {
       return (
         <div>
           <h1>Cats</h1>
-          {Cats.map(cat => {
-            return (
-              <div className="container" key={cat.id}>
-                <img src={`${cat.image}`} />
-                <h2>
-                  <NavLink to={`/cats/${cat.id}`}>
-                    {cat.firstName} {cat.lastName}
-                  </NavLink>
-                </h2>
-                <h3>Age: {cat.age}</h3>
-                <h3>Adoption Status: {cat.adoptionStatus}</h3>
-                <h3>Adoption Fee: {cat.adoptionFee}</h3>
-                <button
-                  type="button"
-                  className="btn btn-primary btn-sm"
-                  onClick={() => this.handleAdd(cat.id)}
-                >
-                  Adopt Me
-                </button>
-              </div>
-            )
-          })}
+          <div className="productsContainer">
+            {Cats.map(cat => {
+              return (
+                <div className="products" key={cat.id}>
+                  <img className="rounded-circle" src={`${cat.image}`} />
+                  <div>
+                    <NavLink to={`/cats/${cat.id}`}>
+                      {cat.firstName} {cat.lastName}
+                    </NavLink>
+                    <h3>Age: {cat.age}</h3>
+                    <h3>Adoption Status: {cat.adoptionStatus}</h3>
+                    <h3>Adoption Fee: {cat.adoptionFee}</h3>
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() => this.handleAdd(cat.id)}
+                    >
+                      Adopt Me
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )
     }

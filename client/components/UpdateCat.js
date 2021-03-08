@@ -80,7 +80,7 @@ class UpdateCat extends React.Component {
               className="form-control"
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="adoptionStatus">Adoption Status:</label>
             <input
               name="adoptionStatus"
