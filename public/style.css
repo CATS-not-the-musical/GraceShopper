@@ -35,7 +35,6 @@ form div {
   border: solid;
   text-align: center;
   background-color: lightblue;
-
 }
 
 .products img {
@@ -43,7 +42,8 @@ form div {
 }
 
 h1 {
-  text-align: center
+  text-align: center;
 }
 .cart {
- text-align: center
+  text-align: center;
+}

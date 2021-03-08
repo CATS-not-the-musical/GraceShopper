@@ -70,39 +70,41 @@ class Cart extends Component {
                     </h4>
                     <img src={`${item.image}`} />
                   </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() => this.props.remove(item.productOrder.catId)}
-                  >
-                    Remove Item
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() =>
-                      this.props.increase(
-                        item.productOrder.catId,
-                        item.productOrder.quantity
-                      )
-                    }
-                  >
-                    Increase Qty
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() => {
-                      return item.productOrder.quantity === 1
-                        ? {}
-                        : this.props.decrease(
-                            item.productOrder.catId,
-                            item.productOrder.quantity
-                          )
-                    }}
-                  >
-                    Decrease Qty
-                  </button>
+                  <div className="cart">
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() => this.props.remove(item.productOrder.catId)}
+                    >
+                      Remove Item
+                    </button>{' '}
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() =>
+                        this.props.increase(
+                          item.productOrder.catId,
+                          item.productOrder.quantity
+                        )
+                      }
+                    >
+                      Increase Qty
+                    </button>{' '}
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() => {
+                        return item.productOrder.quantity === 1
+                          ? {}
+                          : this.props.decrease(
+                              item.productOrder.catId,
+                              item.productOrder.quantity
+                            )
+                      }}
+                    >
+                      Decrease Qty
+                    </button>
+                  </div>
                 </div>
               )
             })}
