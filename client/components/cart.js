@@ -6,6 +6,7 @@ import {
   updateQtyCartThunk,
   checkoutThunk
 } from '../store/cart'
+import Checkout from '../../Checkout'
 
 class Cart extends Component {
   constructor() {
