@@ -29,6 +29,7 @@ class UpdateCat extends React.Component {
       description: this.props.description,
       image: this.props.image
     })
+    window.alert('Cat has been successfully updated')
   }
 
   render() {
@@ -39,7 +40,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="breed">Breed:</label>
             <input
               name="breed"
-              defaultValue={this.props.breed}
+              value={this.props.breed}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -48,7 +49,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="firstName">First Name:</label>
             <input
               name="firstName"
-              defaultValue={this.props.firstName}
+              value={this.props.firstName}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -57,7 +58,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="lastName">Last Name:</label>
             <input
               name="lastName"
-              defaultValue={this.props.lastName}
+              value={this.props.lastName}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -66,7 +67,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="image">Image:</label>
             <input
               name="image"
-              defaultValue={this.props.image}
+              value={this.props.image}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -75,7 +76,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="age">Age:</label>
             <input
               name="age"
-              defaultValue={this.props.age}
+              value={this.props.age}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -84,7 +85,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="adoptionStatus">Adoption Status:</label>
             <input
               name="adoptionStatus"
-              defaultValue={this.props.adoptionStatus}
+              value={this.props.adoptionStatus}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -93,7 +94,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="adoptionFee">Adoption Fee:</label>
             <input
               name="adoptionFee"
-              defaultValue={this.props.adoptionFee}
+              value={this.props.adoptionFee}
               onChange={this.handleChange}
               className="form-control"
             />
@@ -102,7 +103,7 @@ class UpdateCat extends React.Component {
             <label htmlFor="description">Description:</label>
             <input
               name="description"
-              defaultValue={this.props.description}
+              value={this.props.description}
               onChange={this.handleChange}
               className="form-control"
             />
