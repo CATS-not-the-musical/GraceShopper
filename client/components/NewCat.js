@@ -42,7 +42,7 @@ export class NewCat extends Component {
       image
     } = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="" onSubmit={this.handleSubmit}>
         <label htmlFor="breed">Breed</label>
         <input name="breed" value={breed} onChange={this.handleChange} />
 

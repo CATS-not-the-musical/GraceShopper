@@ -73,34 +73,39 @@ class Admin extends React.Component {
               }}
             >
               Cats
-            </button>
+            </button>{' '}
+            <NavLink to="/newcat">
+              <button className="btn btn-primary btn-lg" type="button">
+                Add Cat
+              </button>
+            </NavLink>
           </div>
-          <NavLink to="/newcat">
-            <button className="btn btn-primary btn-lg" type="button">
-              Add Cat
-            </button>
-          </NavLink>
-          {this.state.current.map(user => {
-            return (
-              <div key={user.id}>
-                <img src={`${user.image}`} />
-                <h1>
-                  {user.firstName} {user.lastName}
-                </h1>
-                <h2>{user.email}</h2>
-                <NavLink to={`/cats/${user.id}/update`}>
-                  <button className="btn btn-primary btn-lg" type="button">
-                    Edit
-                  </button>
-                </NavLink>
-                <NavLink to={`/cats/${user.id}/remove`}>
-                  <button className="btn btn-primary btn-lg" type="button">
-                    Delete
-                  </button>
-                </NavLink>
-              </div>
-            )
-          })}
+          <br />
+          <div className="productsContainer">
+            {this.state.current.map(user => {
+              return (
+                <div className="products" key={user.id}>
+                  <img className="rounded-circle" src={`${user.image}`} />
+                  <div>
+                    <h1>
+                      {user.firstName} {user.lastName}
+                    </h1>
+                    <h2>{user.email}</h2>
+                    <NavLink to={`/cats/${user.id}/update`}>
+                      <button className="btn btn-primary btn-lg" type="button">
+                        Edit
+                      </button>
+                    </NavLink>{' '}
+                    <NavLink to={`/cats/${user.id}/remove`}>
+                      <button className="btn btn-primary btn-lg" type="button">
+                        Delete
+                      </button>
+                    </NavLink>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )
     }

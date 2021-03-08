@@ -74,7 +74,7 @@ class UpdateCat extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="adoptionStatus">Adoption Status:</label>
             <input
               name="adoptionStatus"
