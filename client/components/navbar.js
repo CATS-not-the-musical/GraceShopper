@@ -6,7 +6,9 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, role}) => (
   <div>
-    <h1>GraceShopper - Cats not the musical </h1>
+    <h1>CatShopper</h1>
+    <h5>Brought to you by:</h5>
+    <h2>Cats! (not the musical) </h2>
     <nav>
       {role === 'admin' ? (
         <div>
