@@ -13,7 +13,10 @@ class AllCats extends React.Component {
     this.props.getCart()
   }
   handleAdd(id) {
+    //conditional to determine if user is logged in.
+    //for adding cats to existing cart.
     this.props.addToCart(id)
+    //for adding cats to guest cart-future feature
     window.alert('cat added to cardboard box!')
   }
   render() {

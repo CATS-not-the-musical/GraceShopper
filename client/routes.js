@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import AllCats from './components/Cats'
+import Cats from './components/Cats'
 import SingleCat from './components/SingleCat'
 import RemoveCat from './components/RemoveCat'
 import Admin from './components/admin'
@@ -27,7 +27,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/cats" component={AllCats} />
+        <Route exact path="/cats" component={Cats} />
         <Route exact path="/cats/:id/remove" component={RemoveCat} />
         <Route exact path="/cats/:id/update" component={UpdateCat} />
         <Route path="/cats/:id" component={SingleCat} />

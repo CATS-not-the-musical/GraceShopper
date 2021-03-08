@@ -49,11 +49,9 @@ export const fetchSingleCat = id => {
 }
 
 export const fetchUpdateCat = (id, updatedCat) => {
-  console.log('We are in fetchUpdateCat thunk', id, updatedCat)
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/cats/${id}`, updatedCat)
-      console.log('After axios call', data)
       dispatch(updateCat(data))
     } catch (err) {
       console.log(err)

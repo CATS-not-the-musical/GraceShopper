@@ -5,7 +5,6 @@ import {fetchSingleCat} from '../store/singleCat'
 export class SingleCat extends React.Component {
   componentDidMount() {
     this.props.fetchSingleCat(this.props.match.params.id)
-    console.log('componentDidMount', this.props)
   }
   render() {
     const cat = this.props.singleCat
