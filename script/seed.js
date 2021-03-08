@@ -23,12 +23,28 @@ async function seed() {
       })
     ])
   }
+  const catBreeds = [
+    'Persian',
+    'Maine Coon',
+    'Bengal',
+    'Bombay',
+    'British Shorthair',
+    'Siamese',
+    'Sphynx',
+    'Scottish Fold',
+    'Savannah',
+    'Russian Blue',
+    'Himalayan',
+    'Caracat',
+    'Abyssinian',
+    'Devon Rex'
+  ]
   //for loop to create cats
   const catsToCreate = 100
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
       Cat.create({
-        breed: '',
+        breed: catBreeds[Math.floor(Math.random() * 13)],
         firstName: `Paulo${i}`,
         lastName: `Smith${catsToCreate - i}`,
         adoptionStatus: 'available',
