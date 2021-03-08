@@ -4,7 +4,7 @@ import {
   getCartThunk,
   removeFromCartThunk,
   updateQtyCartThunk,
-  checkoutThunk,
+  checkoutThunk
 } from '../store/cart'
 
 class Cart extends Component {
@@ -56,7 +56,7 @@ class Cart extends Component {
           </div>
 
           <div>
-            {items.map((item) => {
+            {items.map(item => {
               return (
                 <div key={item.id}>
                   <div className="cart">
@@ -72,39 +72,41 @@ class Cart extends Component {
                     </h4>
                     <img src={`${item.image}`} />
                   </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() => this.props.remove(item.productOrder.catId)}
-                  >
-                    Remove Item
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() =>
-                      this.props.increase(
-                        item.productOrder.catId,
-                        item.productOrder.quantity
-                      )
-                    }
-                  >
-                    Increase Qty
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                    onClick={() => {
-                      return item.productOrder.quantity === 1
-                        ? {}
-                        : this.props.decrease(
-                            item.productOrder.catId,
-                            item.productOrder.quantity
-                          )
-                    }}
-                  >
-                    Decrease Qty
-                  </button>
+                  <div className="cart">
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() => this.props.remove(item.productOrder.catId)}
+                    >
+                      Remove Item
+                    </button>{' '}
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() =>
+                        this.props.increase(
+                          item.productOrder.catId,
+                          item.productOrder.quantity
+                        )
+                      }
+                    >
+                      Increase Qty
+                    </button>{' '}
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      onClick={() => {
+                        return item.productOrder.quantity === 1
+                          ? {}
+                          : this.props.decrease(
+                              item.productOrder.catId,
+                              item.productOrder.quantity
+                            )
+                      }}
+                    >
+                      Decrease Qty
+                    </button>
+                  </div>
                 </div>
               )
             })}
@@ -115,19 +117,19 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
+const mapStateToProps = state => ({
+  cart: state.cart
 })
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(getCartThunk()),
-    remove: (catid) => dispatch(removeFromCartThunk(catid)),
+    remove: catid => dispatch(removeFromCartThunk(catid)),
     increase: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity + 1)),
     decrease: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity - 1)),
-    checkout: () => dispatch(checkoutThunk()),
+    checkout: () => dispatch(checkoutThunk())
   }
 }
 
