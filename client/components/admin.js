@@ -83,27 +83,46 @@ class Admin extends React.Component {
           <br />
           <div className="productsContainer">
             {this.state.current.map(user => {
-              return (
-                <div className="products" key={user.id}>
-                  <img className="rounded-circle" src={`${user.image}`} />
-                  <div>
-                    <h1>
-                      {user.firstName} {user.lastName}
-                    </h1>
-                    <h2>{user.email}</h2>
-                    <NavLink to={`/cats/${user.id}/update`}>
-                      <button className="btn btn-primary btn-lg" type="button">
-                        Edit
-                      </button>
-                    </NavLink>{' '}
-                    <NavLink to={`/cats/${user.id}/remove`}>
-                      <button className="btn btn-primary btn-lg" type="button">
-                        Delete
-                      </button>
-                    </NavLink>
+              if (user.email) {
+                return (
+                  <div className="products" key={user.id}>
+                    <img className="rounded-circle" src={`${user.image}`} />
+                    <div>
+                      <h1>
+                        {user.firstName} {user.lastName}
+                      </h1>
+                    </div>
                   </div>
-                </div>
-              )
+                )
+              } else {
+                return (
+                  <div className="products" key={user.id}>
+                    <img className="rounded-circle" src={`${user.image}`} />
+                    <div>
+                      <h1>
+                        {user.firstName} {user.lastName}
+                      </h1>
+                      <h2>{user.email}</h2>
+                      <NavLink to={`/cats/${user.id}/update`}>
+                        <button
+                          className="btn btn-primary btn-lg"
+                          type="button"
+                        >
+                          Edit
+                        </button>
+                      </NavLink>{' '}
+                      <NavLink to={`/cats/${user.id}/remove`}>
+                        <button
+                          className="btn btn-primary btn-lg"
+                          type="button"
+                        >
+                          Delete
+                        </button>
+                      </NavLink>
+                    </div>
+                  </div>
+                )
+              }
             })}
           </div>
         </div>
