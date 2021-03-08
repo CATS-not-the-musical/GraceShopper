@@ -32,7 +32,7 @@ const User = db.define('user', {
   },
   role: {
     type: Sequelize.STRING,
-    defaultValue: 'admin'
+    defaultValue: 'user'
   },
   salt: {
     type: Sequelize.STRING,

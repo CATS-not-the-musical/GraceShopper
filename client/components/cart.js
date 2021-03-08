@@ -4,7 +4,7 @@ import {
   getCartThunk,
   removeFromCartThunk,
   updateQtyCartThunk,
-  checkoutThunk
+  checkoutThunk,
 } from '../store/cart'
 
 class Cart extends Component {
@@ -36,24 +36,27 @@ class Cart extends Component {
             {items.length === 0 ? (
               'Cart is empty'
             ) : (
-              <h2>
-                {' '}
-                You have {items.length} types of cats in your cardboard box!
-              </h2>
+              <div>
+                <h2>
+                  {' '}
+                  You have {items.length} types of cats in your cardboard box!
+                </h2>
+                <button
+                  className="btn btn-primary btn-sm"
+                  type="button"
+                  onClick={() => {
+                    //change this user's order  filfilled status from false to true
+                    this.handleCheckout()
+                  }}
+                >
+                  Check Out
+                </button>
+              </div>
             )}
           </div>
-          <div className="cart">
-            <button
-              className="btn btn-primary btn-sm"
-              type="button"
-              onClick={() => {
-                //change this user's order  filfilled status from false to true
-                this.handleCheckout()
-              }}
-            >
-              Check Out
-            </button>
-            {items.map(item => {
+
+          <div>
+            {items.map((item) => {
               return (
                 <div key={item.id}>
                   <div className="cart">
@@ -112,19 +115,19 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cart: state.cart
+const mapStateToProps = (state) => ({
+  cart: state.cart,
 })
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getCart: () => dispatch(getCartThunk()),
-    remove: catid => dispatch(removeFromCartThunk(catid)),
+    remove: (catid) => dispatch(removeFromCartThunk(catid)),
     increase: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity + 1)),
     decrease: (itemid, quantity) =>
       dispatch(updateQtyCartThunk(itemid, quantity - 1)),
-    checkout: () => dispatch(checkoutThunk())
+    checkout: () => dispatch(checkoutThunk()),
   }
 }
 

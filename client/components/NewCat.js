@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {NavLink, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {newCatThunk} from '../store/cat'
 
 export class NewCat extends Component {
@@ -42,50 +42,84 @@ export class NewCat extends Component {
       image
     } = this.state
     return (
-      <form className="" onSubmit={this.handleSubmit}>
-        <label htmlFor="breed">Breed</label>
-        <input name="breed" value={breed} onChange={this.handleChange} />
 
-        <label htmlFor="firstName">First Name</label>
-        <input
-          name="firstName"
-          value={firstName}
-          onChange={this.handleChange}
-        />
-
-        <label htmlFor="lastName">Last Name</label>
-        <input name="lastName" value={lastName} onChange={this.handleChange} />
-
-        <label htmlFor="age">Age</label>
-        <input name="age" value={age} onChange={this.handleChange} />
-
-        <label htmlFor="adoptionStatus">Adoption Status</label>
-        <input
-          name="adoptionStatus"
-          value={adoptionStatus}
-          onChange={this.handleChange}
-        />
-
-        <label htmlFor="adoptionFee">Adoption Fee</label>
-        <input
-          name="adoptionFee"
-          value={adoptionFee}
-          onChange={this.handleChange}
-        />
-
-        <label htmlFor="description">Description</label>
-        <input
-          name="description"
-          value={description}
-          onChange={this.handleChange}
-        />
-
-        <label htmlFor="image">Image Link</label>
-        <input name="image" value={image} onChange={this.handleChange} />
-
-        <button type="submit">Submit</button>
-
-        <Link to="/cats">Cancel</Link>
+      <form onSubmit={this.handleSubmit} className="form-group">
+        <div>
+          <label htmlFor="breed">Breed</label>
+          <input
+            name="breed"
+            value={breed}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            name="firstName"
+            value={firstName}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            name="lastName"
+            value={lastName}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age</label>
+          <input
+            name="age"
+            value={age}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="adoptionStatus">Adoption Status</label>
+          <input
+            name="adoptionStatus"
+            value={adoptionStatus}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="adoptionFee">Adoption Fee</label>
+          <input
+            name="adoptionFee"
+            value={adoptionFee}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="description">Description</label>
+          <input
+            name="description"
+            value={description}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <div>
+          <label htmlFor="image">Image Link</label>
+          <input
+            name="image"
+            value={image}
+            onChange={this.handleChange}
+            className="form-control"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary btn-lg">
+          Submit
+        </button>
+        <Link to="/cats"> Cancel</Link>
       </form>
     )
   }

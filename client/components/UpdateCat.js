@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {updateCat, fetchUpdateCat, fetchSingleCat} from '../store/singleCat'
+import {Link} from 'react-router-dom'
 
 class UpdateCat extends React.Component {
   constructor() {
@@ -33,13 +34,14 @@ class UpdateCat extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form-group">
           <div>
             <label htmlFor="breed">Breed:</label>
             <input
               name="breed"
               defaultValue={this.props.breed}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -48,6 +50,7 @@ class UpdateCat extends React.Component {
               name="firstName"
               defaultValue={this.props.firstName}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -56,6 +59,7 @@ class UpdateCat extends React.Component {
               name="lastName"
               defaultValue={this.props.lastName}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -64,6 +68,7 @@ class UpdateCat extends React.Component {
               name="image"
               defaultValue={this.props.image}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -72,6 +77,7 @@ class UpdateCat extends React.Component {
               name="age"
               defaultValue={this.props.age}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div className="form-group">
@@ -80,6 +86,7 @@ class UpdateCat extends React.Component {
               name="adoptionStatus"
               defaultValue={this.props.adoptionStatus}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -88,6 +95,7 @@ class UpdateCat extends React.Component {
               name="adoptionFee"
               defaultValue={this.props.adoptionFee}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
           <div>
@@ -96,9 +104,13 @@ class UpdateCat extends React.Component {
               name="description"
               defaultValue={this.props.description}
               onChange={this.handleChange}
+              className="form-control"
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn btn-primary btn-lg">
+            Submit
+          </button>
+          <Link to="/cats"> Cancel</Link>
         </form>
       </div>
     )

@@ -20,7 +20,8 @@
     "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register",
-    "test-windows": "set NODE_ENV='test' && mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+    "test-win": "SET NODE_ENV='test' && mocha ./client/components/user-home.spec.js ./script/seed.spec.js ./server/api/users.spec.js ./server/db/models/user.spec.js --recursive --watch --require @babel/polyfill --require @babel/register",
+    "test-win-store-broken": "mocha  ./client/store/user.spec.js --require @babel/polyfill --require @babel/register"
   },
   "husky": {
     "hooks": {
