@@ -2,7 +2,9 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchAllCats} from '../store/cat'
+import {toast} from 'react-toastify'
 import {addToCartThunk, updateQtyCartThunk, getCartThunk} from '../store/cart'
+
 class AllCats extends React.Component {
   constructor() {
     super()
@@ -17,7 +19,8 @@ class AllCats extends React.Component {
     //for adding cats to existing cart.
     this.props.addToCart(id)
     //for adding cats to guest cart-future feature
-    window.alert('cat added to cardboard box!')
+    toast.info('Selected cat has been added to Cardboard Box')
+    // window.alert('cat added to cardboard box!')
   }
   render() {
     const Cats = this.props.cats

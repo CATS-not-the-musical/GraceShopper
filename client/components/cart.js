@@ -6,6 +6,8 @@ import {
   updateQtyCartThunk,
   checkoutThunk
 } from '../store/cart'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class Cart extends Component {
   constructor() {
@@ -20,7 +22,7 @@ class Cart extends Component {
     //axios call
     this.props.checkout()
     this.props.getCart()
-    window.alert('your cats will arrive in a cardboardbox in 1 day')
+    toast.info('Your cat(s) will arrive in a CarboardBox in 1 day!')
   }
 
   render() {
@@ -57,6 +59,7 @@ class Cart extends Component {
             {items.map(item => {
               return (
                 <div key={item.id}>
+                  <div />
                   <div className="cart">
                     <h3>
                       {' '}
