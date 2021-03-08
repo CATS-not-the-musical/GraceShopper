@@ -97,6 +97,7 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
+    //cases below not used yet.
     case ADD_TO_CART:
       return [...state, action.item]
     case REMOVE_FROM_CART:
