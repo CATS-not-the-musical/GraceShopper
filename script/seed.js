@@ -64,7 +64,7 @@ async function seed() {
     await Promise.all([
       User.create({
         firstName: catFirstNames[Math.floor(Math.random() * 15)],
-        lastName: catlastNames[Math.floor(Math.random() * 15)],
+        lastName: catLastNames[Math.floor(Math.random() * 15)],
         email: `cody${i}@email.com`,
         password: '123',
         image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
