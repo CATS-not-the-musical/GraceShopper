@@ -8,6 +8,7 @@ import {
   checkoutThunk
 } from '../store/cart'
 import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
   guestCartIncrease,
   guestCartDecrease,
@@ -127,6 +128,7 @@ class Cart extends Component {
             {items.map(item => {
               return (
                 <div key={item.id}>
+                  <div />
                   <div className="cart">
                     <h3>
                       {' '}

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {updateCat, fetchUpdateCat, fetchSingleCat} from '../store/singleCat'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 class UpdateCat extends React.Component {
   constructor() {
@@ -29,7 +30,7 @@ class UpdateCat extends React.Component {
       description: this.props.description,
       image: this.props.image
     })
-    window.alert('Cat has been successfully updated')
+    toast.info('This cat has been updated in the database')
   }
 
   render() {

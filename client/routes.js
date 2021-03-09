@@ -11,6 +11,7 @@ import Admin from './components/admin'
 import UpdateCat from './components/UpdateCat'
 import Cart from './components/cart'
 import NewCat from './components/NewCat'
+import Account from './components/Account'
 
 /**
  * COMPONENT
@@ -39,6 +40,7 @@ class Routes extends Component {
             <Route path="/cart" component={Cart} />
             <Route path="/home" component={UserHome} />
             <Route path="/admin" component={Admin} />
+            <Route path="/account" component={Account} />
           </Switch>
         )}
 

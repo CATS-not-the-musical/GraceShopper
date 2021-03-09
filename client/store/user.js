@@ -120,6 +120,8 @@ export default function(state = defaultUser, action) {
       return defaultUser
     case GET_ALL_USERS:
       return {...state, allUsers: action.allUsers}
+    case UPDATE_USER:
+      return action.user[1][0]
     default:
       return state
   }
