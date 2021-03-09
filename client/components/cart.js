@@ -94,7 +94,7 @@ class Cart extends Component {
     toast.info('Please wait while your payment information is processing')
     const response = await axios.post('/api/checkout', {
       token: token,
-      items: {cat: 1, price: 10}
+      items: {cat: 1, price: this.props.cart[0].cats}
     })
     const {status} = response.data
     if (status === 'success') {
