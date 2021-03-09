@@ -50,11 +50,17 @@ class Cart extends Component {
         autoClose: 7000
       })
     } else {
-      //populate cart with localStorage data
-      //prompt user to log in, then convert guest cart data to
-      //real user cart data
+      toast.info(
+        'Please login or signup first before checking out.\nYour cart items have been saved',
+        {
+          autoClose: 12000
+        }
+      )
+      //send the guest to the login screen if they want to checkout.
+      this.props.history.push('/login')
     }
   }
+
   increaseQuantity(catId, quantity) {
     if (this.props.isLoggedIn) {
       this.props.increase(catId, quantity)
