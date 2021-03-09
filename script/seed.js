@@ -6,20 +6,69 @@ const {Cat} = require('../server/db')
 const ProductOrder = require('../server/db/models/productOrder')
 const Order = require('../server/db/models/order')
 
+const catFirstNames = [
+  'Rose',
+  'Tulip',
+  'Pansy',
+  'Lily',
+  'Lavender',
+  'Dandelion',
+  'Daisy',
+  'Iris',
+  'Buttercup',
+  'Violet',
+  'Poppy',
+  'Camellia',
+  'Petunia',
+  'Aster',
+  'Dahlia',
+  'Jasmine'
+]
+const catLastNames = [
+  'Flower',
+  'Fern',
+  'Holly',
+  'Jude',
+  'Maple',
+  'Ash',
+  'Mulberry',
+  'Magnolia',
+  'Basil',
+  'Rosemary',
+  'Sage',
+  'Peppermint',
+  'Thyme',
+  'Lavender',
+  'Ivy',
+  'Willow'
+]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+  //CREATE admin account
+  await Promise.all([
+    User.create({
+      firstName: 'admin',
+      lastName: 'admin',
+      email: `Admin@email.com`,
+      password: 'SecretPassword',
+      image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
+      role: 'admin'
+    })
+  ])
+
   const usersToCreate = 100
   //for loop to create users
   for (let i = 0; i < usersToCreate; i++) {
     await Promise.all([
       User.create({
-        firstName: 'Yin',
-        lastName: 'Daniel',
+        firstName: catFirstNames[Math.floor(Math.random() * 15)],
+        lastName: catlastNames[Math.floor(Math.random() * 15)],
         email: `cody${i}@email.com`,
         password: '123',
         image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
-        role: `${Math.floor(Math.random() * 2) === 1 ? 'admin' : 'user'}`
+        role: 'user'
       })
     ])
   }

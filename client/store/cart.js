@@ -6,7 +6,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QTY = 'UPDATE_QTY'
-
+const CLEAR_CART = 'CLEAR_CART'
 // const DECREASE_QTY = 'DECREASE_QTY'
 // const INCREASE_QTY = 'INCREASE_QTY'
 
@@ -31,6 +31,10 @@ export const updateQty = (item, quantity) => ({
   type: UPDATE_QTY,
   item,
   quantity
+})
+
+export const clearCart = () => ({
+  type: CLEAR_CART
 })
 
 export const getCartThunk = () => {
@@ -105,11 +109,13 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         items: state.filter(item => item.id !== action.itemid)
       }
+    case CLEAR_CART:
+      return []
     default:
       return state
   }
 }
-// more code to better modify state
+// old code to modify state
 // export const addToCart = (items, product) => dispatch => {
 //   const cartItems = items.splice()
 //   let productAllreadyInCart = false
