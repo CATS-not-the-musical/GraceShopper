@@ -22,10 +22,11 @@ class Cart extends Component {
   constructor() {
     super()
     this.handleCheckout = this.handleCheckout.bind(this)
-    this.state = {cart: []}
+    this.state = {cart: [{cat1: 'hello kitty'}]}
     this.increaseQuantity = this.increaseQuantity.bind(this)
     this.decreaseQuantity = this.decreaseQuantity.bind(this)
     this.removeCat = this.removeCat.bind(this)
+    this.handleToken = this.handleToken.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -89,11 +90,15 @@ class Cart extends Component {
     }
   }
 
-  async handleToken(token) {
-    const response = await axios.post('/api/checkout', {token, items})
+  async handleToken(token, addresses) {
+    toast.info('Please wait your payment information is processed')
+    const response = await axios.post('/api/checkout', {
+      token: token,
+      items: {cat: 1, price: 10}
+    })
     const {status} = response.data
-    console.log('Response:', response.data)
     if (status === 'success') {
+      this.handleCheckout()
       toast('Success! Check email for details', {type: 'success'})
     } else {
       toast('Something went wrong', {type: 'error'})
@@ -101,6 +106,7 @@ class Cart extends Component {
   }
 
   render() {
+    console.log('isloggedin', this.props)
     //conditionals for checking initial render
     let cart
     if (this.props.isLoggedIn) {
@@ -120,6 +126,7 @@ class Cart extends Component {
       } else {
         items = cart
       }
+      console.log('isloggedin', this.props)
       return (
         <div>
           <div className="cart">
@@ -131,23 +138,26 @@ class Cart extends Component {
                   {' '}
                   You have {items.length} types of cats in your cardboard box!
                 </h2>
-                {/* <button
-                  className="btn btn-primary btn-sm"
-                  type="button"
-                  onClick={() => {
-                    //change this user's order  filfilled status from false to true
-                    this.handleCheckout()
-                  }}
-                >
-                  Check Out
-                </button> */}
-                <StripeCheckout
-                  stripeKey="pk_test_51ISqVbEIZ6XqI4oDafkoEuhsDFpfl9OVFKTsjwhDWMXf6nd5yeAOQmdkwzcH9zUWhSTiogzZXBsxZiLPHB3noeDL00G3CfA4mh"
-                  token={this.handleToken()}
-                  name="CatShopper"
-                  billingAddress
-                  shippingAddress
-                />
+                {!this.props.isLoggedIn ? (
+                  <button
+                    className="btn btn-primary btn-sm"
+                    type="button"
+                    onClick={() => {
+                      //change this user's order  filfilled status from false to true
+                      this.handleCheckout()
+                    }}
+                  >
+                    Check Out
+                  </button>
+                ) : (
+                  <StripeCheckout
+                    stripeKey="pk_test_51ISqVbEIZ6XqI4oDafkoEuhsDFpfl9OVFKTsjwhDWMXf6nd5yeAOQmdkwzcH9zUWhSTiogzZXBsxZiLPHB3noeDL00G3CfA4mh"
+                    token={this.handleToken}
+                    name="CatShopper"
+                    billingAddress
+                    shippingAddress
+                  />
+                )}
               </div>
             )}
           </div>
