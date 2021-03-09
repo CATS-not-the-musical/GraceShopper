@@ -27,14 +27,18 @@ describe('User routes', () => {
       const res = await request(app)
         .get('/api/users')
         .expect(200)
-      expect(res.body).to.be.an('object')
+      //expects no admin access to return no data
+      const resBodyArr = Object.keys(res.body).length
+      expect(resBodyArr).to.be.equal(0)
     })
+
     // it('Get /api/cats', async () => {
     //   const res = await request(app)
     //     .get('api/cats')
+    //     .set('Content-Type', 'application/json')
+    //     .send('{role: "admin"}')
     //     .expect(200)
     //   expect(res.body).to.be.an('array')
     // })
-    // end describe('User routes')
   })
 }) //end describe('/api/users')

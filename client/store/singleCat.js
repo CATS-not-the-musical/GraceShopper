@@ -11,8 +11,7 @@ const initialState = {
   adoptionStatus: '',
   adoptionFee: '',
   description: '',
-  image: '',
-  ownerId: ''
+  image: ''
 }
 
 export const singleCat = data => ({
