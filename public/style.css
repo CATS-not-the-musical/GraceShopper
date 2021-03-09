@@ -47,3 +47,8 @@ h1 {
 .cart {
   text-align: center;
 }
+
+table {
+  border-color: black;
+  display: table;
+}
