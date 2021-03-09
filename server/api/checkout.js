@@ -1,11 +1,11 @@
-const cors = require('cors') //middleware
+//const cors = require('cors') //middleware
 const router = require('express').Router()
 const stripe = require('stripe')(
   'sk_test_51ISqVbEIZ6XqI4oD93Tw6LZ5Bd98wOlnmv60mlttXLhOG5OmPlpV73HyNncWbO25tNWEiUPzQhHA3uix5kIoTIAn005MzaRMKn'
 )
 const uuid = require('uuid/v4') //
 
-router.post('/checkout', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   console.log('Request:', req.body)
   let error
   let status
@@ -24,7 +24,7 @@ router.post('/checkout', async (req, res, next) => {
         amount: items.price * 100,
         currency: 'usd',
         customer: customer.id,
-        receiptEmail: token.email,
+        receipt_email: token.email,
         description: `Purchased the ${items.name}`,
         shipping: {
           name: token.card.name,
@@ -33,7 +33,7 @@ router.post('/checkout', async (req, res, next) => {
             line2: token.card.address_line2,
             city: token.card.address_city,
             country: token.card.address_country,
-            postalCode: token.card.address_zip
+            postal_code: token.card.address_zip
           }
         }
       },
@@ -49,3 +49,4 @@ router.post('/checkout', async (req, res, next) => {
   }
   res.json({error, status})
 })
+module.exports = router
