@@ -11,6 +11,7 @@ import Admin from './components/admin'
 import UpdateCat from './components/UpdateCat'
 import Cart from './components/cart'
 import NewCat from './components/NewCat'
+import OrderHistory from './components/OrderHistory'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route exact path="/cats/:id/update" component={UpdateCat} />
         <Route path="/cats/:id" component={SingleCat} />
         <Route exact path="/newcat" component={NewCat} />
+        <Route exact path="/orderhistory/users/:id" component={OrderHistory} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -3,6 +3,11 @@ const {Order} = require('../db')
 const {ProductOrder} = require('../db')
 const {Cat} = require('../db')
 
+// API/Cart (/All Carts)
+// /api/cart/:userID
+// /api/cart/4
+// /api/cart/users/4
+// /api/users/4/cart --> cart of 4th user
 router.get('/', async (req, res, next) => {
   try {
     // if (req.user) {
@@ -25,6 +30,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //delete route for user cart
+// /api/cart/orderId/users/4
 router.delete('/', async (req, res, next) => {
   try {
     // if (!(typeof parseInt(req.params.catid) === 'number')) {
@@ -65,6 +71,7 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+// /api/cart/orderId/checkout
 router.put('/checkout', async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
@@ -78,6 +85,8 @@ router.put('/checkout', async (req, res, next) => {
   }
 })
 
+// /cart/user/4/
+// where do we put specific resources?
 router.post('/', async (req, res, next) => {
   try {
     const userOrder = await Order.findOrCreate({

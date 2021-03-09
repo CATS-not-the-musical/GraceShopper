@@ -8,3 +8,5 @@ module.exports = function isAdmin(req, res, next) {
   console.log('not enough permissions-show error')
   res.send('please go back. Only administrators beyond this point')
 }
+
+// isUser() --> Verify user is correct

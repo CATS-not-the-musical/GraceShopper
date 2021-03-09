@@ -34,7 +34,9 @@ class AllCats extends React.Component {
                   <img className="rounded-circle" src={`${cat.image}`} />
                   <div>
                     <NavLink to={`/cats/${cat.id}`}>
-                      {cat.firstName} {cat.lastName}
+                      <h3>
+                        {cat.firstName} {cat.lastName}
+                      </h3>
                     </NavLink>
                     <h3>Age: {cat.age}</h3>
                     <h3>Adoption Status: {cat.adoptionStatus}</h3>
