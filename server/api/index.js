@@ -3,6 +3,7 @@ const router = require('express').Router()
 router.use('/cats', require('./cats.js'))
 router.use('/users', require('./users.js'))
 router.use('/cart', require('./cart.js'))
+router.use('/checkout', require('./checkout.js'))
 router.use('/orderhistory', require('./orderHistory.js'))
 
 router.use((req, res, next) => {
