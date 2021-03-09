@@ -91,7 +91,7 @@ class Cart extends Component {
   }
 
   async handleToken(token, addresses) {
-    toast.info('Please wait your payment information is processed')
+    toast.info('Please wait while your payment information is processing')
     const response = await axios.post('/api/checkout', {
       token: token,
       items: {cat: 1, price: 10}
