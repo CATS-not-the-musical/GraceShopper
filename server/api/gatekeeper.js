@@ -9,6 +9,7 @@ function isAdmin(req, res, next) {
   res.send('please go back. Only administrators beyond this point')
 }
 
+// isUser() --> Verify user is correct
 function isUser(req, res, next) {
   if (req.user) {
     return next()

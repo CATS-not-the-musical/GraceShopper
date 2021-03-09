@@ -47,3 +47,8 @@ form div {
 .cart {
   text-align: center;
 }
+
+table {
+  border-color: black;
+  display: table;
+}
