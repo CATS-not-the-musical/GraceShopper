@@ -20,7 +20,7 @@ export const newCat = cat => ({
   type: NEW_CAT,
   cat
 })
-
+//follow standard of layout
 export default function catReducer(state = initialState, action) {
   switch (action.type) {
     case ALL_CATS:
@@ -30,6 +30,7 @@ export default function catReducer(state = initialState, action) {
         return cat.id !== action.cat
       })
       return filteredCats
+    //needs to fix.
     case NEW_CAT:
       return action.cat
     default:
@@ -55,8 +56,7 @@ export const newCatThunk = (cat, history) => {
       dispatch(newCat(data))
       history.push('/')
     } catch (err) {
-      console.log(err.response.data)
-      throw err
+      console.log(err)
     }
   }
 }
