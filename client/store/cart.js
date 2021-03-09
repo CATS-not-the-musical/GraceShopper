@@ -59,10 +59,13 @@ export const removeFromCartThunk = catid => {
   }
 }
 //put to update post to create
-export const addToCartThunk = catId => {
+export const addToCartThunk = (catId, quantity = 1) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/cart', {catId: catId})
+      const {data} = await axios.post('/api/cart', {
+        catId: catId,
+        quantity: quantity
+      })
       dispatch(getCartThunk())
     } catch (error) {
       console.log(error)
