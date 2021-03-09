@@ -7,6 +7,9 @@ import {
   updateQtyCartThunk,
   checkoutThunk
 } from '../store/cart'
+import StripeCheckout from 'react-stripe-checkout'
+import axios from 'axios'
+toast.configure()
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
@@ -86,6 +89,17 @@ class Cart extends Component {
     }
   }
 
+  async handleToken(token) {
+    const response = await axios.post('/api/checkout', {token, items})
+    const {status} = response.data
+    console.log('Response:', response.data)
+    if (status === 'success') {
+      toast('Success! Check email for details', {type: 'success'})
+    } else {
+      toast('Something went wrong', {type: 'error'})
+    }
+  }
+
   render() {
     //conditionals for checking initial render
     let cart
@@ -117,7 +131,7 @@ class Cart extends Component {
                   {' '}
                   You have {items.length} types of cats in your cardboard box!
                 </h2>
-                <button
+                {/* <button
                   className="btn btn-primary btn-sm"
                   type="button"
                   onClick={() => {
@@ -126,7 +140,14 @@ class Cart extends Component {
                   }}
                 >
                   Check Out
-                </button>
+                </button> */}
+                <StripeCheckout
+                  stripeKey="pk_test_51ISqVbEIZ6XqI4oDafkoEuhsDFpfl9OVFKTsjwhDWMXf6nd5yeAOQmdkwzcH9zUWhSTiogzZXBsxZiLPHB3noeDL00G3CfA4mh"
+                  token={this.handleToken()}
+                  name="CatShopper"
+                  billingAddress
+                  shippingAddress
+                />
               </div>
             )}
           </div>
