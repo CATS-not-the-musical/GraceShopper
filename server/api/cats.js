@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Cat} = require('../db')
-const isAdmin = require('./gatekeeper')
+const {isAdmin} = require('./gatekeeper')
 
 router.get('/', async (req, res, next) => {
   try {
