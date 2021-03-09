@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {
   getCartThunk,
   removeFromCartThunk,
@@ -7,25 +8,85 @@ import {
   checkoutThunk
 } from '../store/cart'
 import StripeCheckout from 'react-stripe-checkout'
-import {toast} from 'react-toastify'
 import axios from 'axios'
-
 toast.configure()
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import {
+  guestCartIncrease,
+  guestCartDecrease,
+  guestCartRemove
+} from './guestCartFxns'
 
 class Cart extends Component {
   constructor() {
     super()
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.state = {cart: []}
+    this.increaseQuantity = this.increaseQuantity.bind(this)
+    this.decreaseQuantity = this.decreaseQuantity.bind(this)
+    this.removeCat = this.removeCat.bind(this)
+  }
+
+  componentDidUpdate(prevProps) {
+    //gets cart after isloggedIn is updated on props
+    if (this.props.isLoggedIn !== prevProps.isLoggedIn)
+      if (this.props.isLoggedIn) {
+        this.props.getCart()
+      }
   }
   componentDidMount() {
-    this.props.getCart()
+    if (this.props.isLoggedIn) {
+      this.props.getCart()
+    } else {
+      const guestCartCatsArr = JSON.parse(window.localStorage.getItem('cart'))
+      this.setState({cart: guestCartCatsArr})
+    }
   }
 
   handleCheckout() {
     //axios call
-    this.props.checkout()
-    this.props.getCart()
-    window.alert('your cats will arrive in a cardboardbox in 1 day')
+    if (this.props.isLoggedIn) {
+      this.props.checkout()
+      this.props.getCart()
+      toast.info('your cats will arrive in a cardboardbox in 1 day', {
+        autoClose: 7000
+      })
+    } else {
+      toast.info(
+        'Please login or signup first before checking out.\nYour cart items have been saved',
+        {
+          autoClose: 12000
+        }
+      )
+      //send the guest to the login screen if they want to checkout.
+      this.props.history.push('/login')
+    }
+  }
+
+  increaseQuantity(catId, quantity) {
+    if (this.props.isLoggedIn) {
+      this.props.increase(catId, quantity)
+    } else {
+      const catArr = guestCartIncrease(catId, quantity)
+      this.setState({cart: catArr})
+    }
+  }
+  decreaseQuantity(catId, quantity) {
+    if (this.props.isLoggedIn) {
+      this.props.decrease(catId, quantity)
+    } else {
+      const catArr = guestCartDecrease(catId, quantity)
+      this.setState({cart: catArr})
+    }
+  }
+  removeCat(id) {
+    if (this.props.isLoggedIn) {
+      this.props.remove(id)
+    } else {
+      let catArr = guestCartRemove(id)
+      this.setState({cart: catArr})
+    }
   }
 
   async handleToken(token) {
@@ -40,10 +101,25 @@ class Cart extends Component {
   }
 
   render() {
-    if (!this.props.cart[0]) {
+    //conditionals for checking initial render
+    let cart
+    if (this.props.isLoggedIn) {
+      //set logged in user state cart
+      cart = this.props.cart[0]
+    } else {
+      //set guest cart
+      cart = JSON.parse(window.localStorage.getItem('cart'))
+    }
+    if (!cart) {
       return <h1>Empty Cart</h1>
     } else {
-      const items = this.props.cart[0].cats
+      let items = []
+      //sets items to the actual array of cat objects
+      if (this.props.isLoggedIn) {
+        items = cart.cats
+      } else {
+        items = cart
+      }
       return (
         <div>
           <div className="cart">
@@ -79,6 +155,7 @@ class Cart extends Component {
             {items.map(item => {
               return (
                 <div key={item.id}>
+                  <div />
                   <div className="cart">
                     <h3>
                       {' '}
@@ -96,7 +173,7 @@ class Cart extends Component {
                     <button
                       type="button"
                       className="btn btn-primary btn-sm"
-                      onClick={() => this.props.remove(item.productOrder.catId)}
+                      onClick={() => this.removeCat(item.id)}
                     >
                       Remove Item
                     </button>{' '}
@@ -104,8 +181,8 @@ class Cart extends Component {
                       type="button"
                       className="btn btn-primary btn-sm"
                       onClick={() =>
-                        this.props.increase(
-                          item.productOrder.catId,
+                        this.increaseQuantity(
+                          item.id,
                           item.productOrder.quantity
                         )
                       }
@@ -118,8 +195,8 @@ class Cart extends Component {
                       onClick={() => {
                         return item.productOrder.quantity === 1
                           ? {}
-                          : this.props.decrease(
-                              item.productOrder.catId,
+                          : this.decreaseQuantity(
+                              item.id,
                               item.productOrder.quantity
                             )
                       }}
@@ -138,7 +215,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  isLoggedIn: !!state.user.id
 })
 
 const mapDispatchToProps = dispatch => {
@@ -154,3 +232,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+Cart.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+}
