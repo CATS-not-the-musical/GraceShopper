@@ -34,7 +34,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       const image = profile.photos[0].value
       const firstName = profile.name.givenName
       const lastName = profile.name.familyName
-      const role = 'admin'
+      const role = 'user'
 
       User.findOrCreate({
         where: {googleId},
