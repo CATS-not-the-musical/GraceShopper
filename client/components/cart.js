@@ -7,6 +7,10 @@ import {
   checkoutThunk
 } from '../store/cart'
 import StripeCheckout from 'react-stripe-checkout'
+import {toast} from 'react-toastify'
+import axios from 'axios'
+
+toast.configure()
 
 class Cart extends Component {
   constructor() {
@@ -24,16 +28,14 @@ class Cart extends Component {
     window.alert('your cats will arrive in a cardboardbox in 1 day')
   }
 
-  async handleToken(token, addresses) {
-    async function handleToken(token, addresses) {
-      const response = await axios.post({token, product})
-      const {status} = response.data
-      console.log('Response:', response.data)
-      if (status === 'success') {
-        toast('Success! Check email for details', {type: 'success'})
-      } else {
-        toast('Something went wrong', {type: 'error'})
-      }
+  async handleToken(token) {
+    const response = await axios.post('/api/checkout', {token, items})
+    const {status} = response.data
+    console.log('Response:', response.data)
+    if (status === 'success') {
+      toast('Success! Check email for details', {type: 'success'})
+    } else {
+      toast('Something went wrong', {type: 'error'})
     }
   }
 
@@ -65,7 +67,7 @@ class Cart extends Component {
                 </button> */}
                 <StripeCheckout
                   stripeKey="pk_test_51ISqVbEIZ6XqI4oDafkoEuhsDFpfl9OVFKTsjwhDWMXf6nd5yeAOQmdkwzcH9zUWhSTiogzZXBsxZiLPHB3noeDL00G3CfA4mh"
-                  token={this.handleToken}
+                  token={this.handleToken()}
                   name="CatShopper"
                   billingAddress
                   shippingAddress
