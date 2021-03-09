@@ -42,7 +42,6 @@ class Cart extends Component {
 
   handleCheckout() {
     //axios call
-    console.log('handleCheckout', this.props)
     if (this.props.isLoggedIn) {
       this.props.checkout()
       this.props.getCart()
@@ -81,13 +80,11 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('cart render', this.props)
     //conditionals for checking initial render
     let cart
     if (this.props.isLoggedIn) {
       //set logged in user state cart
       cart = this.props.cart[0]
-      console.log(cart)
     } else {
       //set guest cart
       cart = JSON.parse(window.localStorage.getItem('cart'))

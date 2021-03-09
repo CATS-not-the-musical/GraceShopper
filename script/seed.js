@@ -6,43 +6,6 @@ const {Cat} = require('../server/db')
 const ProductOrder = require('../server/db/models/productOrder')
 const Order = require('../server/db/models/order')
 
-const catFirstNames = [
-  'Rose',
-  'Tulip',
-  'Pansy',
-  'Lily',
-  'Lavender',
-  'Dandelion',
-  'Daisy',
-  'Iris',
-  'Buttercup',
-  'Violet',
-  'Poppy',
-  'Camellia',
-  'Petunia',
-  'Aster',
-  'Dahlia',
-  'Jasmine'
-]
-const catLastNames = [
-  'Flower',
-  'Fern',
-  'Holly',
-  'Jude',
-  'Maple',
-  'Ash',
-  'Mulberry',
-  'Magnolia',
-  'Basil',
-  'Rosemary',
-  'Sage',
-  'Peppermint',
-  'Thyme',
-  'Lavender',
-  'Ivy',
-  'Willow'
-]
-
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -63,8 +26,8 @@ async function seed() {
   for (let i = 0; i < usersToCreate; i++) {
     await Promise.all([
       User.create({
-        firstName: catFirstNames[Math.floor(Math.random() * 15)],
-        lastName: catLastNames[Math.floor(Math.random() * 15)],
+        firstName: `Paulo${i}`,
+        lastName: `Smith${usersToCreate - i}`,
         email: `cody${i}@email.com`,
         password: '123',
         image: `/images/${Math.floor(Math.random() * 65)}.jpg`,
@@ -88,14 +51,52 @@ async function seed() {
     'Abyssinian',
     'Devon Rex'
   ]
+
+  const catFirstNames = [
+    'Rose',
+    'Tulip',
+    'Pansy',
+    'Lily',
+    'Lavender',
+    'Dandelion',
+    'Daisy',
+    'Iris',
+    'Buttercup',
+    'Violet',
+    'Poppy',
+    'Camellia',
+    'Petunia',
+    'Aster',
+    'Dahlia',
+    'Jasmine'
+  ]
+  const catLastNames = [
+    'Flower',
+    'Fern',
+    'Holly',
+    'Jude',
+    'Maple',
+    'Ash',
+    'Mulberry',
+    'Magnolia',
+    'Basil',
+    'Rosemary',
+    'Sage',
+    'Peppermint',
+    'Thyme',
+    'Lavender',
+    'Ivy',
+    'Willow'
+  ]
+
   //for loop to create cats
   const catsToCreate = 100
   for (let i = 0; i < catsToCreate; i++) {
     await Promise.all([
       Cat.create({
         breed: catBreeds[Math.floor(Math.random() * 13)],
-        firstName: `Paulo${i}`,
-        lastName: `Smith${catsToCreate - i}`,
+        firstName: catFirstNames[Math.floor(Math.random() * 15)],
+        lastName: catLastNames[Math.floor(Math.random() * 15)],
         adoptionStatus: 'available',
         adoptionFee: Math.floor(Math.random() * 10) + 30,
         age: Math.floor(Math.random() * 10),
@@ -109,7 +110,7 @@ async function seed() {
     await Promise.all([
       Order.create({
         total: 0,
-        fulfilledStatus: false,
+        fulfilledStatus: !(Math.floor(Math.random() * 2) > 0),
         userId: i + 1
       })
     ])

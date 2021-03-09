@@ -35,7 +35,6 @@ class AllCats extends React.Component {
   }
 
   render() {
-    console.log('all cats render', this.props)
     const Cats = this.props.cats
     if (!Cats) {
       return <h1>Loading...</h1>

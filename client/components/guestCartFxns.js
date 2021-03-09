@@ -16,10 +16,8 @@ export function addToGuestCart(currCatId, cat) {
     let guestCartCatsArr = JSON.parse(guestCartCats)
     //check to see if cat is already in the cart. Only add the cat if
     //it is not in the cart.
-    console.log('carts array from localStorage', guestCartCatsArr)
     let catDetected = false
     for (let i = 0; i < guestCartCatsArr.length; i++) {
-      console.log('forloop check', guestCartCatsArr[i])
       if (currCatId === guestCartCatsArr[i].id) {
         catDetected = true
         break
@@ -28,7 +26,6 @@ export function addToGuestCart(currCatId, cat) {
     //if the cat is not already in the guest cart, add it
     if (!catDetected) {
       guestCartCatsArr = [...guestCartCatsArr, cat]
-      console.log('post add cat arr', guestCartCatsArr)
       guestCart.setItem('cart', JSON.stringify(guestCartCatsArr))
       toast.info(
         `${cat.firstName} ${cat.lastName} added to guest cardboard box!`
