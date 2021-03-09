@@ -22,7 +22,6 @@ router.post('/', async (req, res, next) => {
       totalPrice +=
         items.price[i].productOrder.quantity * items.price[i].adoptionFee
     }
-    console.log('items.price,totalPrice', items.price, totalPrice)
     const idempotencyKey = uuid() //makes sure users arent charged twice
     const charge = await stripe.charges.create(
       {
