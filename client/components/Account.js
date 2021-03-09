@@ -9,8 +9,7 @@ const initialState = {
   email: '',
   firstName: '',
   image: '',
-  lastName: '',
-  role: ''
+  lastName: ''
 }
 
 class Account extends React.Component {
@@ -27,8 +26,7 @@ class Account extends React.Component {
       email: this.props.user.email,
       firstName: this.props.user.firstName,
       image: this.props.user.image,
-      lastName: this.props.user.lastName,
-      role: this.props.user.role
+      lastName: this.props.user.lastName
     })
   }
 
@@ -100,16 +98,6 @@ class Account extends React.Component {
                 className="form-control"
               />
             </div>
-            <div>
-              <label htmlFor="role">Role:</label>
-              <input
-                name="role"
-                value={this.state.role}
-                onChange={this.handleChange}
-                className="form-control"
-              />
-            </div>
-
             <button type="submit" className="btn btn-primary btn-lg">
               Submit
             </button>
