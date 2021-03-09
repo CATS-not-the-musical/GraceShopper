@@ -6,7 +6,6 @@ import {fetchAllCats} from '../store/cat'
 import {toast} from 'react-toastify'
 import {addToCartThunk, updateQtyCartThunk, getCartThunk} from '../store/cart'
 import {addToGuestCart} from './guestCartFxns'
-import {toast} from 'react-toastify'
 
 class AllCats extends React.Component {
   constructor() {
