@@ -1,24 +1,39 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {fetchAllCats} from '../store/cat'
 import {addToCartThunk, updateQtyCartThunk, getCartThunk} from '../store/cart'
+import {addToGuestCart} from './guestCartFxns'
+import {toast} from 'react-toastify'
+
 class AllCats extends React.Component {
   constructor() {
     super()
     this.handleAdd = this.handleAdd.bind(this)
   }
+
   componentDidMount() {
     this.props.allCats()
     this.props.getCart()
   }
+
   handleAdd(id) {
+    let addedCat = this.props.cats[id - 1]
     //conditional to determine if user is logged in.
-    //for adding cats to existing cart.
-    this.props.addToCart(id)
-    //for adding cats to guest cart-future feature
-    window.alert('cat added to cardboard box!')
+    if (this.props.isLoggedIn) {
+      //for adding cats to logged in user cart.
+      this.props.addToCart(id)
+      toast.info(
+        `${addedCat.firstName} ${addedCat.lastName} added to cardboard box!`
+      )
+    } else {
+      //adding to guest cart
+      let catData = {...addedCat, productOrder: {quantity: 1}}
+      addToGuestCart(id, catData)
+    }
   }
+
   render() {
     const Cats = this.props.cats
     if (!Cats) {
@@ -60,7 +75,8 @@ class AllCats extends React.Component {
 const mapState = state => {
   return {
     cats: state.cats,
-    cart: state.cart
+    cart: state.cart,
+    isLoggedIn: !!state.user.id
   }
 }
 
@@ -75,3 +91,8 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(AllCats)
+
+//PROP TYPES
+AllCats.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+}

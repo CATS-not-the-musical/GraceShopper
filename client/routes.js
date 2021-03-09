@@ -32,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/cats/:id/update" component={UpdateCat} />
         <Route path="/cats/:id" component={SingleCat} />
         <Route exact path="/newcat" component={NewCat} />
+        <Route path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
