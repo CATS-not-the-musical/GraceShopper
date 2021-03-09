@@ -10,7 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-import bodyParser from 'body-parser'
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -46,8 +46,6 @@ const createApp = () => {
   app.use(morgan('dev'))
 
   // body parsing middleware
-
-  app.use(bodyParser())
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
 

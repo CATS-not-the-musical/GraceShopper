@@ -49,9 +49,9 @@ class Cart extends Component {
         autoClose: 7000
       })
     } else {
-      //populate cart with localStorage data
       //prompt user to log in, then convert guest cart data to
       //real user cart data
+      //populate cart with localStorage data
     }
   }
   increaseQuantity(catId, quantity) {

@@ -44,8 +44,13 @@ export function guestCartIncrease(catId, quantity) {
   const guestCart = window.localStorage
   let catsArr = JSON.parse(guestCart.getItem('cart'))
   //increase the quantity of the corresponding cat object
-  catsArr[catId - 1].productOrder.quantity = quantity + 1
-  guestCart.setItem('cart', JSON.stringify(catsArr))
+  for (let i = 0; i < catsArr.length; i++) {
+    if (catsArr[i].id === catId) {
+      catsArr[i].productOrder.quantity = quantity + 1
+      guestCart.setItem('cart', JSON.stringify(catsArr))
+      break
+    }
+  }
   return catsArr
 }
 
@@ -53,18 +58,26 @@ export function guestCartDecrease(catId, quantity) {
   const guestCart = window.localStorage
   let catsArr = JSON.parse(guestCart.getItem('cart'))
   //decrease the quantity of the corresponding cat object
-  if (quantity > 1) {
-    catsArr[catId - 1].productOrder.quantity = quantity - 1
-    guestCart.setItem('cart', JSON.stringify(catsArr))
-    return catsArr
+  for (let i = 0; i < catsArr.length; i++) {
+    if (catsArr[i].id === catId && quantity > 1) {
+      catsArr[i].productOrder.quantity = quantity - 1
+      guestCart.setItem('cart', JSON.stringify(catsArr))
+      break
+    }
   }
+  return catsArr
 }
 
 export function guestCartRemove(catId) {
   const guestCart = window.localStorage
   let catsArr = JSON.parse(guestCart.getItem('cart'))
   //remove the cat from the array
-  catsArr.splice(catId - 1, 1)
-  guestCart.setItem('cart', JSON.stringify(catsArr))
+  for (let i = 0; i < catsArr.length; i++) {
+    if (catsArr[i].id === catId) {
+      catsArr.splice(i, 1)
+      guestCart.setItem('cart', JSON.stringify(catsArr))
+      break
+    }
+  }
   return catsArr
 }
