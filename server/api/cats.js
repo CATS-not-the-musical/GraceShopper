@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Cat} = require('../db')
-const isAdmin = require('./gatekeeper')
+const {isAdmin} = require('./gatekeeper')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -19,8 +19,9 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 //api/cats
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
+    // { what's needed from req.body}
     const newCat = await Cat.create(req.body)
     res.json(newCat)
   } catch (err) {
@@ -38,6 +39,7 @@ router.delete('/:id', isAdmin, async (req, res, next) => {
 })
 router.put('/:id', isAdmin, async (req, res, next) => {
   try {
+    // { what's needed from req.body}
     const updatedCat = await Cat.update(req.body, {
       where: {
         id: req.params.id

@@ -6,9 +6,11 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, role}) => (
   <div>
-    <h1>CatShopper</h1>
-    <h5>Brought to you by:</h5>
-    <h2>Cats! (not the musical) </h2>
+    <div className="title">
+      <h1>CatShopper</h1>
+      <h5>Brought to you by:</h5>
+      <h2>Cats! (not the musical) </h2>
+    </div>
     <nav>
       {role === 'admin' ? (
         <div>
@@ -16,6 +18,8 @@ const Navbar = ({handleClick, isLoggedIn, role}) => (
           <Link to="/home">Home</Link>
           <Link to="/admin">Admin</Link>
           <Link to="/cart">Cardboard Box</Link>
+          <Link to="/orderhistory/users/:id">Order History</Link>
+          <Link to="/account">Account</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -25,6 +29,8 @@ const Navbar = ({handleClick, isLoggedIn, role}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/cart">Cardboard Box</Link>
+          <Link to="/orderhistory/users/:id">Order History</Link>
+          <Link to="/account">Account</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -35,6 +41,7 @@ const Navbar = ({handleClick, isLoggedIn, role}) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/cats">Cats</Link>
+          <Link to="/cart">Cardboard Box</Link>
         </div>
       )}
     </nav>

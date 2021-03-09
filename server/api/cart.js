@@ -3,6 +3,11 @@ const {Order} = require('../db')
 const {ProductOrder} = require('../db')
 const {Cat} = require('../db')
 
+// API/Cart (/All Carts)
+// /api/cart/:userID
+// /api/cart/4
+// /api/cart/users/4
+// /api/users/4/cart --> cart of 4th user
 router.get('/', async (req, res, next) => {
   try {
     // if (req.user) {
@@ -25,6 +30,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //delete route for user cart
+// /api/cart/orderId/users/4
 router.delete('/', async (req, res, next) => {
   try {
     // if (!(typeof parseInt(req.params.catid) === 'number')) {
@@ -65,6 +71,7 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+// /api/cart/orderId/checkout
 router.put('/checkout', async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
@@ -78,6 +85,8 @@ router.put('/checkout', async (req, res, next) => {
   }
 })
 
+// /cart/user/4/
+// where do we put specific resources?
 router.post('/', async (req, res, next) => {
   try {
     const userOrder = await Order.findOrCreate({
@@ -87,7 +96,7 @@ router.post('/', async (req, res, next) => {
     const newCat = ProductOrder.build({
       orderId: userOrderId,
       catId: req.body.catId,
-      quantity: 1
+      quantity: req.body.quantity ? req.body.quantity : 1
     })
     await newCat.save()
     const output = newCat.toJSON()
@@ -96,5 +105,24 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
-
+//delete route for user cart
+router.delete('/', async (req, res, next) => {
+  try {
+    // if (!(typeof parseInt(req.params.catid) === 'number')) {
+    //   throw new Error('invalid request needs to be number to delete')
+    // }
+    //find the user's cart marked by fulfilledstatus:false
+    const userOrder = await Order.findAll({
+      where: {userId: req.user.id, fulfilledStatus: false}
+    })
+    const userOrderId = userOrder[0].id
+    const cat = await ProductOrder.findOne({
+      where: {catId: req.body.catid, orderId: userOrderId}
+    })
+    await cat.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
 module.exports = router
