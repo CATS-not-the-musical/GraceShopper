@@ -5,31 +5,32 @@ import axios from 'axios'
 export class OrderHistory extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {orders: []}
     this.loading = true
   }
   async componentDidMount() {
-    const {data} = await axios.get(
-      `/api/orderhistory/users/${this.props.user.userId}`
-    )
-    console.log(data)
-    this.setState(data)
+    const {data} = await axios
+      .get(`/api/orderhistory/users/${this.props.user.userId}`)
+      .then((this.loading = false))
+    this.setState({orders: data})
   }
 
   render() {
-    console.log('This is the state', this.state)
-    const UserOrders = this.state
-    console.log('This is userOrders', this.state.cats)
+    const UserOrders = this.state.orders
+    console.log(UserOrders)
     if (this.loading) {
       return <h1>Loading....</h1>
     } else {
       return (
         <div>
           <h1>Order History</h1>
-          {UserOrders.map(user => {
+          {UserOrders.map(order => {
             return (
-              <div key={user}>
-                <h3>Quantity: {user}</h3>
+              <div key={order.id}>
+                <h1>Order Number{order.id}</h1>
+                {order.cats.map(cat => {
+                  return <div key={cat.id}>Cat No.{cat.id}</div>
+                })}
               </div>
             )
           })}
